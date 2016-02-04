@@ -1,0 +1,1 @@
+echo level:1-score:1000>"C:/Upsilon/config.txt"
