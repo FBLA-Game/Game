@@ -4,11 +4,9 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import me.cameronwitcher.upsilon.utils.Sound;
-
 public class Audio {
 	
-	public static synchronized void playSound(final Sound sound) {
+	public static synchronized void playSound(final org.fbla.game.utils.Sound sound) {
 		new Thread(new Runnable() {
 			
 			// The wrapper thread is unnecessary, unless it blocks on the
