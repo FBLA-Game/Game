@@ -87,12 +87,20 @@ public class MenuBoard extends Board implements ActionListener {
 
 	public void drawMenu(Graphics g) {
 		
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
 		
+		g.setColor(Color.WHITE);
 
 		g.drawImage(Background.WIN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 		
+//		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
+		
+		g.setFont(Bridge.font);
+		
+		g.drawString(Bridge.getGame().description.getProperty("title"), M_WIDTH/2 - (g.getFontMetrics().stringWidth(Bridge.getGame().description.getProperty("title"))/2), 50);
 		
 
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		
 		g.drawImage(Texture.loadTexture("playermodels/" + Bridge.getPlayer().getPlayerModel() + "/stand.png"),
 		

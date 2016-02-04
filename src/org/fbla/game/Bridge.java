@@ -1,7 +1,11 @@
 package org.fbla.game;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -20,6 +24,7 @@ public class Bridge {
 
 	private static Game game;
 	public static Player player;
+	public static Font font;
 	
 
 
@@ -42,6 +47,18 @@ public class Bridge {
 		Utils.init();
 		
 		setPlayer(new Player(0,0));
+		
+		try {
+            font = Font.createFont(Font.TRUETYPE_FONT, Texture.loadFont("title.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, Texture.loadFont("title.ttf")));
+        } catch (IOException|FontFormatException e) {
+            e.printStackTrace();
+        }
+        
+		
+		
 
 	}
 	

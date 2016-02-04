@@ -1,6 +1,7 @@
 package res;
 
 import java.awt.Image;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 
@@ -17,6 +18,16 @@ public class Texture {
 				return null;
 			}
 		}
+	}
+	
+	public static File loadFont(String resource){
+		
+		try {
+			return new File(Texture.class.getResource("/res/font/" + resource).getFile());
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	
