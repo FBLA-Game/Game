@@ -17,8 +17,9 @@ import org.fbla.game.utils.AI;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
+import org.fbla.game.utils.InteractionMethod;
 
-public class FireKnobber extends Entity implements Moveable,Keyable {
+public class Boss extends Entity implements Moveable,Keyable {
 	
 	public boolean onground = false;
 	private int dy;
@@ -28,7 +29,7 @@ public class FireKnobber extends Entity implements Moveable,Keyable {
 	private boolean walking = false;
 	private boolean left = false;
 	private boolean right = false;
-	public FireKnobber(int x, int y) {
+	public Boss(int x, int y) {
         super(x, y);
         init();
         score = 10;
@@ -190,9 +191,11 @@ public class FireKnobber extends Entity implements Moveable,Keyable {
 	
 	@Override
 	public void kill(DamageReason reason){
+		
+		
+		
 		this.remove();
 	}
-	
 
 	@Override
 	public void disable() {
