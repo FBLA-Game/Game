@@ -14,11 +14,15 @@ public class Projectile extends Entity implements Moveable {
 	public int speed;
 	public Entity shooter;
 	
+	double yd = -5;
+	
 	
 	public Projectile(int x, int y, Entity shooter) {
 		super(x, y);
 		this.shooter = shooter;
+		speed = 4;
 	}
+	
 	
 	public void setDamage(int damage){
 		this.damage = damage;
@@ -36,6 +40,11 @@ public class Projectile extends Entity implements Moveable {
 
 	@Override
 	public void move() {
+		
+		speed = 6; 
+		
+		y = (int) (y + yd);
+		yd = yd+(0.5);
 		if(direction.equals(Direction.RIGHT))
 			x = x+speed;
 		if(direction.equals(Direction.LEFT))
