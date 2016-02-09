@@ -97,14 +97,22 @@ public class MenuBoard extends Board implements ActionListener {
 		
 		g.setFont(Bridge.font);
 		
-		g.drawString(Bridge.getGame().description.getProperty("title"), M_WIDTH/2 - (g.getFontMetrics().stringWidth(Bridge.getGame().description.getProperty("title"))/2), 50);
+		g.drawString(Bridge.getGame().description.getProperty("title").toUpperCase(), M_WIDTH/2 - (g.getFontMetrics().stringWidth(Bridge.getGame().description.getProperty("title"))/2), 50);
 		
 
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		
-		g.drawImage(Texture.loadTexture("playermodels/" + Bridge.getPlayer().getPlayerModel() + "/stand.png"),
+		String model;
 		
-				(M_WIDTH / 2) - ((13 * 5) / 2), (M_HEIGHT / 2) - ((44 * 5) / 2), Bridge.getPlayer().getRestingWidth() * 5, Bridge.getPlayer().getRestingHeight() * 5, null);
+		try{
+			model = Bridge.getPlayer().getPlayerModel();
+		} catch(NullPointerException ex){
+			model = "yellow";
+		}
+		
+		g.drawImage(Texture.loadTexture("playermodels/" +model+ "/stand.png"),
+		
+				(M_WIDTH / 2) - ((13 * 5) / 2), (M_HEIGHT / 2) - ((44 * 5) / 2), Bridge.getPlayer().getRestingWidth() * 5, Bridge.getPlayer().getRestingHeight() * 5, this);
 
 		g.setColor(Color.white);
 

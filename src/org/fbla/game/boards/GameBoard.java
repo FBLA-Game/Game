@@ -727,7 +727,11 @@ public class GameBoard extends Board implements ActionListener {
 				((Knobber) s).drawHealthBar(g, sk.x - (50 / 2), sk.y - 20, 50, 5);
 				break;
 			case ARROW:
-				if(((Arrow) sprite).getDirection().equals(Direction.LEFT)) g.drawImage(sprite.getImage(), (int) ((sprite.x + 16)*extra), (int) (sprite.y*extra), -16, 4, this);
+				
+//				g.drawImage(Images.rotate(sprite.getImage(), Math.asin(((Arrow) sprite).dx)/ Math.asin(((Arrow) sprite).dy)), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
+				
+				
+				if(((Arrow) sprite).getDirection().equals(Direction.LEFT)) g.drawImage(Images.rotate(sprite.getImage(), Math.asin(((Arrow) sprite).dx/((Arrow) sprite).dy)), (int) ((sprite.x + 16)*extra), (int) (sprite.y*extra), -16, 4, this);
 				else g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
 				break;
 			default:

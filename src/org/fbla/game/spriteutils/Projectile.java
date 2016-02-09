@@ -11,16 +11,15 @@ public class Projectile extends Entity implements Moveable {
 
 	public int damage;
 	public Direction direction;
-	public int speed;
 	public Entity shooter;
 	
-	double yd = -5;
+	public double dy = -5;
+	public double dx = 1;
 	
 	
 	public Projectile(int x, int y, Entity shooter) {
 		super(x, y);
 		this.shooter = shooter;
-		speed = 4;
 	}
 	
 	
@@ -41,14 +40,15 @@ public class Projectile extends Entity implements Moveable {
 	@Override
 	public void move() {
 		
-		speed = 6; 
 		
-		y = (int) (y + yd);
-		yd = yd+(0.5);
+		
+		
+		y = (int) (y + dy);
+		dy = dy+(0.5);
 		if(direction.equals(Direction.RIGHT))
-			x = x+speed;
+			x = (int) (x+dx);
 		if(direction.equals(Direction.LEFT))
-			x = x-speed;
+			x = (int) (x-dx);
 		
 		if(x > 1000){
 			remove();

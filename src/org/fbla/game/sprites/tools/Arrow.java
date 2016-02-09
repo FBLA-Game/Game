@@ -12,7 +12,7 @@ public class Arrow extends Projectile  {
 	public Arrow(int x, int y, Direction direction, Entity shooter) {
         super(x, y, shooter);
         this.direction = direction;
-        this.speed = 6;
+        this.dx = 6;
         damage = 10;
         init();
     }

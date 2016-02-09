@@ -36,26 +36,21 @@ public class Bridge {
 	public static boolean DEBUG = false;
 	
 	public static void main(String[] args) {
+		
+		setPlayer(new Player(0,0));
 		gameBoardSize.put(0, 960);
 		gameBoardSize.put(1, 540);
 		game = new Game();
 		game.init();
-		File file = new File("C://KANSAS_WELLSVILLE_HIGHSCHOOL/Upsilon/");
+		File file = new File("C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/");
 		if (!file.exists()) {
 			Utils.runInstall();
 		}
 		Utils.init();
 		
-		setPlayer(new Player(0,0));
 		
-		try {
-            font = Font.createFont(Font.TRUETYPE_FONT, Texture.loadFont("title.ttf"));
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, Texture.loadFont("title.ttf")));
-        } catch (IOException|FontFormatException e) {
-            e.printStackTrace();
-        }
+		
+		
         
 		
 		

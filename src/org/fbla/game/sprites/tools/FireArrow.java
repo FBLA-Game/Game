@@ -11,7 +11,7 @@ public class FireArrow extends Arrow  {
 	public FireArrow(int x, int y, Direction direction, Entity shooter) {
         super(x, y, direction, shooter);
         this.direction = direction;
-        this.speed = 6;
+        this.dx = 6;
         damage = 20;
         init();
     }

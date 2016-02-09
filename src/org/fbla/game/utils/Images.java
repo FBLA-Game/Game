@@ -32,7 +32,7 @@ public class Images {
 
 		int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
 
-		BufferedImage bimg = toBufferedImage(getEmptyImage(neww, newh));
+		BufferedImage bimg = toBufferedImage(getEmptyImage(16, 4));
 		Graphics2D g = bimg.createGraphics();
 
 		g.translate((neww - w) / 2, (newh - h) / 2);
