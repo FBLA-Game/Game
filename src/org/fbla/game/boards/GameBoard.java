@@ -229,7 +229,7 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel1(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
-			level1.add(new Wall(x*30, 35*15-(x/2), 30, State.HORIZONTAL));
+			level1.add(new Floor(x*30, 35*15-(x/2), Floor.GRASS));
 		}
 		
 		for(int x=0;x!=10;x++){
@@ -242,7 +242,7 @@ public class GameBoard extends Board implements ActionListener {
 		}
 		
 		for(int x=2;x!=31;x++){
-			level1.add(new Floor(x*30, 12*30));
+			level1.add(new Floor(x*30, 12*30,Floor.GRAY_STONE));
 		}
 		
 		for(int y=5;y!=12;y++){
@@ -250,7 +250,7 @@ public class GameBoard extends Board implements ActionListener {
 		}
 	
 		for(int x=3;x!=20;x++){
-			level1.add(new Floor(x*30,6*30));
+			level1.add(new Floor(x*30,6*30,Floor.GRAY_STONE));
 		}
 		
 		
@@ -292,9 +292,9 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel4(boolean debug) {
 		for(int x=0;x!=32;x++){
 			if(x>=8 && x<=17)
-				level4.add(new Floor((x*30)-2, (13*30)-2));
+				level4.add(new Floor((x*30)-2, (13*30)-2,Floor.BLUE_STONE));
 			else
-			level4.add(new Floor((x*30)-2, 533));
+			level4.add(new Floor((x*30)-2, 533,Floor.GRASS));
 			
 		}
 		
@@ -308,7 +308,7 @@ public class GameBoard extends Board implements ActionListener {
 			level4.add(new Ladder((31*30),(y*30)-9));
 		}
 		for(int x=3;x!=31;x++){
-			level4.add(new Floor((x*30),(8*30)-2));
+			level4.add(new Floor((x*30),(8*30)-2,Floor.BLUE_STONE));
 		}
 		
 		level4.add(new Wall(1 * 30, 0, 450, State.VERTICAL));
@@ -317,7 +317,7 @@ public class GameBoard extends Board implements ActionListener {
 			level4.add(new Ladder((3*30), (y*30)-4));
 		}
 		for(int x=4;x!=15;x++){
-			level4.add(new Floor((x*30)-3,(4*30)-2));
+			level4.add(new Floor((x*30)-3,(4*30)-2,Floor.BLUE_STONE));
 		}
 		
 		level4.add(new Wall((3*30)-3,86,159,State.VERTICAL));
@@ -357,14 +357,14 @@ public class GameBoard extends Board implements ActionListener {
 		
 
 		for (int x = 0; x != 19; x++) {
-			level6.add(new Floor((x * 30), 16 * 30));
+			level6.add(new Floor((x * 30), 16 * 30,Floor.BLUE_STONE));
 		}
 		for (int y = 8; y!= 16; y++) {
 			level6.add(new Ladder((17 * 30), (y*30)-3));
 		}
 		for (int x=2; x!= 17;x++){
 			if(x==1|| x==2 || x==3 || x==5 || x==7 || x==9 || x==11 || x==13 || x== 14 || x==15 || x==16)
-				level6.add(new Floor((x*30), 11*30));
+				level6.add(new Floor((x*30), 11*30,Floor.BLUE_STONE));
 			else
 				continue;
 		}
@@ -383,7 +383,7 @@ public class GameBoard extends Board implements ActionListener {
 			if(x==14||x==15||x==16)
 				level7.add(new Spike(x*30, 6*30));
 			else
-				level7.add(new Floor(x*30, 6*30));
+				level7.add(new Floor(x*30, 6*30,Floor.BLUE_STONE));
 		}
 		
 		
@@ -402,7 +402,7 @@ public class GameBoard extends Board implements ActionListener {
 			if (x==14||x==15)
 				continue;
 			else
-				level8.add(new Floor((x*30),(9*30)));
+				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE));
 		}	
 		for(int y=0;y!=7;y++){
 			level8.add(new Wall(16*30,y*30,30,State.VERTICAL));
@@ -442,7 +442,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 				
 		for (int x=14;x!=30;x++){
-			level8.add(new Floor(x*30,15*30));
+			level8.add(new Floor(x*30,15*30,Floor.BLUE_STONE));
 		
 		}
 		
