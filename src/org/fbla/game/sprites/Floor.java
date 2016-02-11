@@ -45,4 +45,8 @@ public class Floor extends Sprite {
         
         getImageDimensions();
     }
+
+	public int getFloorType() {
+		return type;
+	}
 }

@@ -228,12 +228,22 @@ public class GameBoard extends Board implements ActionListener {
 
 	private void loadLevel1(boolean debug) {
 		
+		
+		
+		for(int x=3;x!=20;x++){
+			level1.add(new Floor(x*30,6*30,Floor.GRASS));
+		}
+		
+		for(int x=2;x!=31;x++){
+			level1.add(new Floor(x*30, 12*30,Floor.GRASS));
+		}
+		
 		for(int x=0;x!=32;x++){
-			level1.add(new Floor(x*30, 35*15-(x/2), Floor.GRASS));
+			level1.add(new Floor(x*30, 17*30, Floor.GRASS));
 		}
 		
 		for(int x=0;x!=10;x++){
-			level1.add(new Gold((x*32)+13, 510-(x/2)));
+			level1.add(new Gold((x*30), 480));
 		}
 		
 		for(int y=11;y!=17;y++){
@@ -241,17 +251,13 @@ public class GameBoard extends Board implements ActionListener {
 		
 		}
 		
-		for(int x=2;x!=31;x++){
-			level1.add(new Floor(x*30, 12*30,Floor.GRAY_STONE));
-		}
+		
 		
 		for(int y=5;y!=12;y++){
 			level1.add(new Ladder(2*30, (y*30)));
 		}
 	
-		for(int x=3;x!=20;x++){
-			level1.add(new Floor(x*30,6*30,Floor.GRAY_STONE));
-		}
+		
 		
 		
 		level1.add(new JumpBoots(10*30,10*30));
@@ -709,6 +715,12 @@ public class GameBoard extends Board implements ActionListener {
 			if(sprite instanceof Entity){
 				e = e+1;
 				continue;
+			}
+			if(sprite instanceof Floor){
+				if(((Floor) sprite).getFloorType()==Floor.GRASS){
+					g.setColor(Color.decode("#562B0D"));
+					g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
+				}
 			}
 			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()), (int) (sprite.getHeight()), this);
 			
