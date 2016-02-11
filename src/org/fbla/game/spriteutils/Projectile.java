@@ -13,13 +13,14 @@ public class Projectile extends Entity implements Moveable {
 	public Direction direction;
 	public Entity shooter;
 	
-	public double dy = -5;
-	public double dx = 1;
+	public double dy = -10;
+	public double dx = 10;
+	private boolean gravity;
 	
-	
-	public Projectile(int x, int y, Entity shooter) {
+	public Projectile(int x, int y, Entity shooter, boolean gravity) {
 		super(x, y);
 		this.shooter = shooter;
+		this.gravity = gravity;
 	}
 	
 	
@@ -43,8 +44,17 @@ public class Projectile extends Entity implements Moveable {
 		
 		
 		
-		y = (int) (y + dy);
-		dy = dy+(0.5);
+		if(gravity){
+			y = (int) (y + dy);
+			dy = dy+(0.5);
+			
+			
+			if(dx<=0)
+				dx=0;
+			else dx=dx-0.2;
+		}
+		
+		
 		if(direction.equals(Direction.RIGHT))
 			x = (int) (x+dx);
 		if(direction.equals(Direction.LEFT))
