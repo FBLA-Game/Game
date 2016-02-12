@@ -62,7 +62,6 @@ public class GameBoard extends Board implements ActionListener {
 	private boolean fs = false;
 	public double extra = 1;
 	private int e = 0;
-	//hi
 	
 	private GraphicsDevice vc;
 
