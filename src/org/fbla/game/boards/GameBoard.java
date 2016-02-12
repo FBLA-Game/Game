@@ -285,12 +285,14 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel3(boolean debug) {
 		
-		for(int x=0;x!=15;x++){
-			level3.add(new FallingFloor(x*35, 100+(x*25)));
+		for(int x=0;x!=17;x++){
+			if(x>=5 && x<=10)
+				level3.add(new FallingFloor(x*30, 15*30));
+			else level3.add(new Floor(x*30, 15*30,Floor.GRASS));
 		
 		}
 		
-		level3.add(new Wall((17*30)+11, 15*30, 90, State.HORIZONTAL));
+		level3.add(new Wall((17*30), 15*30, 90, State.HORIZONTAL));
 		level3.add(new Gate((19 * 30)+10, (14* 30)-2, GateType.FLAG));
 		if(!debug) level3.add(Bridge.getPlayer());
 
@@ -734,6 +736,12 @@ public class GameBoard extends Board implements ActionListener {
 			Sprite sprite = (Sprite) s;
 			SpriteType type = (sprite).getType();
 			switch (type) {
+			case FALLING_FLOOR:
+				
+				g.setColor(Color.decode("#562B0D"));
+				g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
+				g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()*extra), (int) (sprite.getHeight()*extra), this);
+				break;
 			case KNOBBER:
 				Knobber sk = (Knobber) s;
 				g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (Bridge.getPlayer().getWalkingWidth()), (int) (Bridge.getPlayer().getWalkingHeight()), this);
