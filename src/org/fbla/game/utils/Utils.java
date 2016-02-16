@@ -28,6 +28,7 @@ public class Utils {
 	private static String root;
 	private static File rootFile;
 	public static HashMap<Integer, Background> backgrounds = new HashMap<>();
+	public static HashMap<Integer, int[]> spawns = new HashMap<>();
 
 	public static void init() {
 		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/Upsilon/";
@@ -36,7 +37,7 @@ public class Utils {
 		
 		
 		backgrounds.put(1, Background.SKY);
-		backgrounds.put(2, Background.HELL);
+		backgrounds.put(2, Background.SKY);
 		backgrounds.put(3, Background.SKY);
 		backgrounds.put(4, Background.SKY);
 		backgrounds.put(5, Background.SKY);
@@ -44,6 +45,18 @@ public class Utils {
 		backgrounds.put(7, Background.SKY);
 		backgrounds.put(8, Background.SKY);
 		backgrounds.put(9, Background.ENTERING_CAVE);
+		
+		spawns.put(1, new int []{21,460});
+		spawns.put(2, new int []{21,405});
+		spawns.put(3, new int []{21,405});
+		spawns.put(4, new int []{21,480});
+		spawns.put(5, new int []{21,405});
+		spawns.put(6, new int []{0,0});
+		spawns.put(7, new int []{21,140});
+		spawns.put(8, new int []{21,230});
+		spawns.put(9, new int []{21,260});
+		spawns.put(10, new int []{21,480});
+		
 		
 
 		int length = (int) config.length();
@@ -87,6 +100,10 @@ public class Utils {
 	public static void broadcastMessage(String message) {
 		System.out.println(message);
 		System.out.println();
+	}
+	
+	public static int[] getSpawnPoint(int level){
+		return spawns.get(level);
 	}
 
 	public static void displayMessage(int id, String message, int x, int y, int time, String color, int size) {

@@ -1,5 +1,6 @@
 package org.fbla.game.sprites;
 
+import org.fbla.game.spriteutils.FloorBottom;
 import org.fbla.game.spriteutils.Sprite;
 import org.fbla.game.spriteutils.SpriteType;
 
@@ -10,13 +11,27 @@ public class Floor extends Sprite {
 	public static int RED_STONE = 2;
 	public static int GRASS = 3;
 	
+	
 	private int type;
-
-    public Floor(int x, int y, int type) {
+	private FloorBottom bottom = FloorBottom.getColorFromType(0);
+	
+	public Floor(int x, int y, int type) {
         super(x, y);
         this.type = type;
+        bottom = FloorBottom.getColorFromType(type);
         initFloor();
     }
+	
+	public Floor(int x, int y, int type, FloorBottom back) {
+        super(x, y);
+        this.type = type;
+        bottom = back;
+        initFloor();
+    }
+	
+	public FloorBottom getBackgroundType(){
+		return bottom;
+	}
     
     @Override
     public SpriteType getType(){

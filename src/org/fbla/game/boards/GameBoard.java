@@ -230,16 +230,18 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 		
+		
+		
 		for(int x=3;x!=20;x++){
-			level1.add(new Floor(x*30,6*30,Floor.GRASS));
+			level1.add(new Floor(x*30,6*30,Floor.GRASS,FloorBottom.DIRT));
 		}
 		
 		for(int x=2;x!=31;x++){
-			level1.add(new Floor(x*30, 12*30,Floor.GRASS));
+			level1.add(new Floor(x*30, 12*30,Floor.GRASS,FloorBottom.DIRT));
 		}
 		
 		for(int x=0;x!=32;x++){
-			level1.add(new Floor(x*30, 17*30, Floor.GRASS));
+			level1.add(new Floor(x*30, 17*30, Floor.GRASS,FloorBottom.DIRT));
 		}
 		
 		for(int x=0;x!=10;x++){
@@ -284,14 +286,13 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel3(boolean debug) {
 		
-		for(int x=0;x!=17;x++){
+		for(int x=0;x!=32;x++){
 			if(x>=5 && x<=10)
 				level3.add(new FallingFloor(x*30, 15*30));
 			else level3.add(new Floor(x*30, 15*30,Floor.GRASS));
 		
 		}
 		
-		level3.add(new Wall((17*30), 15*30, 90, State.HORIZONTAL));
 		level3.add(new Gate((19 * 30)+10, (14* 30)-2, GateType.FLAG));
 		if(!debug) level3.add(Bridge.getPlayer());
 
@@ -586,6 +587,9 @@ public class GameBoard extends Board implements ActionListener {
 
 			}
 		}
+		
+		Bridge.player.x = Utils.getSpawnPoint(Bridge.getPlayer().getLevel())[0];
+		Bridge.player.y = Utils.getSpawnPoint(Bridge.getPlayer().getLevel())[1];
 
 		ingame = true;
 
@@ -719,10 +723,9 @@ public class GameBoard extends Board implements ActionListener {
 				continue;
 			}
 			if(sprite instanceof Floor){
-				if(((Floor) sprite).getFloorType()==Floor.GRASS){
-					g.setColor(Color.decode("#562B0D"));
-					g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
-				}
+				g.setColor(((Floor) sprite).getBackgroundType().getColor());
+				g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
+				
 			}
 			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()), (int) (sprite.getHeight()), this);
 			
