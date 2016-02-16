@@ -43,18 +43,18 @@ public class Projectile extends Entity implements Moveable {
 		
 		
 		
-		
-		if(gravity){
-			y = (int) (y + dy);
-			dy = dy+(0.5);
-			
-			
-			if(dx<=0)
-				dx=0;
-			else dx=dx-0.2;
-		}
-		
-		
+//		
+//		if(gravity){
+//			y = (int) (y + dy);
+//			dy = dy+(0.5);
+//			
+//			
+//			if(dx<=0)
+//				dx=0;
+//			else dx=dx-0.2;
+//		}
+//		
+//		
 		if(direction.equals(Direction.RIGHT))
 			x = (int) (x+dx);
 		if(direction.equals(Direction.LEFT))
