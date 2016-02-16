@@ -299,37 +299,39 @@ public class GameBoard extends Board implements ActionListener {
 		levels.put(3, level3);
 	}
 	private void loadLevel4(boolean debug) {
+		
+		for(int x=4;x!=15;x++){
+			level4.add(new Floor((x*30),(4*30),Floor.BLUE_STONE));
+		}
+		for(int y=3;y!=8;y++){
+			level4.add(new Ladder((3*30), (y*30)));
+		}
+		for(int x=3;x!=31;x++){
+			level4.add(new Floor((x*30),(8*30),Floor.BLUE_STONE));
+		}
+		for(int y=8;y!=18;y++){
+			level4.add(new Ladder((31*30),(y*30)));
+		}
+		for(int y=13;y!=18;y++){
+			level4.add(new Ladder((18*30),(y*30)));
+		}
+		for(int y=13;y!=18;y++){
+			level4.add(new Ladder((7*30),(y*30)));
+		}
+		
 		for(int x=0;x!=32;x++){
 			if(x>=8 && x<=17)
-				level4.add(new Floor((x*30)-2, (13*30)-2,Floor.BLUE_STONE));
+				level4.add(new Floor((x*30), (13*30),Floor.GRASS,FloorBottom.DIRT));
 			else
-			level4.add(new Floor((x*30)-2, 533,Floor.GRASS));
+			level4.add(new Floor((x*30), 533,Floor.GRASS));
 			
 		}
 		
-		for(int y=13;y!=18;y++){
-			level4.add(new Ladder((7*30)+4,(y*30)-9));
-		}
-		for(int y=13;y!=18;y++){
-			level4.add(new Ladder((18*30)-2,(y*30)-9));
-		}
-		for(int y=8;y!=18;y++){
-			level4.add(new Ladder((31*30),(y*30)-9));
-		}
-		for(int x=3;x!=31;x++){
-			level4.add(new Floor((x*30),(8*30)-2,Floor.BLUE_STONE));
-		}
 		
-		level4.add(new Wall(1 * 30, 0, 450, State.VERTICAL));
-        
-		for(int y=3;y!=8;y++){
-			level4.add(new Ladder((3*30), (y*30)-4));
-		}
-		for(int x=4;x!=15;x++){
-			level4.add(new Floor((x*30)-3,(4*30)-2,Floor.BLUE_STONE));
-		}
 		
-		level4.add(new Wall((3*30)-3,86,159,State.VERTICAL));
+		
+		
+		
 		
 		level4.add(new Gate((14 * 30)-4, (3 * 30)-4,GateType.FLAG));
 		level4.add(new Knobber(11 * 15, 13 * 15));
