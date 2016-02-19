@@ -100,7 +100,7 @@ public class Sprite {
     	return null;
     }
     
-    protected void loadImage(Image image){
+    public void loadImage(Image image){
     	this.image = image;
     }
     

@@ -12,6 +12,8 @@ import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 
+import org.fbla.game.sprites.tools.Key;
+
 public class Images {
 	
 	public static Image toImage(BufferedImage bimage){
@@ -88,5 +90,67 @@ public class Images {
 
 		// Return the buffered image
 		return bimage;
+	}
+
+	public static void colorKey(Image image, Key key) {
+		
+		colorKey(toBufferedImage(image), key);
+		
+	}
+	
+	public static void colorKey(BufferedImage image, Key key) {
+		
+		int r=0;
+		int g=0;
+		int b=0;
+		switch(key.getID()){
+		case 1:
+			r=255;
+			g=0;
+			b=0;
+			break;
+		default:
+			break;
+		}
+		
+		int color = Color.getColor(rgb);
+		
+		for(int x=0;x!=image.getWidth();x++){
+			for(int y=0;y!=image.getHeight();y++){
+				if(image.getRGB(x, y)==-3881984){
+					image.setRGB(x, y, col);
+				}
+			}
+		}
+		
+		key.loadImage(image);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

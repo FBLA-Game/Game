@@ -2,6 +2,7 @@ package org.fbla.game.sprites.tools;
 
 import org.fbla.game.spriteutils.SpriteType;
 import org.fbla.game.spriteutils.Tool;
+import org.fbla.game.utils.Images;
 
 public class Key extends Tool {
 	
@@ -21,6 +22,7 @@ public class Key extends Tool {
 	public void init(){
 		loadImage("tools/key.png");
 		setImageDimensions(17, 17,0,0);
+		Images.colorKey(getImage(),this);
 	}
 	
 	@Override

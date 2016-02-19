@@ -64,6 +64,7 @@ public class GameBoard extends Board implements ActionListener {
 	private int e = 0;
 	
 	private GraphicsDevice vc;
+	
 
 	public boolean paused = false;
 	public Map<Integer, String> messages = new HashMap<>();
@@ -262,7 +263,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 		
-		level1.add(new JumpBoots(10*30,10*30));
+		level1.add(new Key(10*30,10*30, 1));
 //		level1.add(new Door(18 * 15, (7* 15)+10, 1));
 //		level1.add(new Bow(9 * 30, 20 * 15));
 //		level1.add(new Key(15 * 30, 20 * 15, 1));
@@ -729,7 +730,7 @@ public class GameBoard extends Board implements ActionListener {
 				g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
 				
 			}
-			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()), (int) (sprite.getHeight()), this);
+			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()*extra), (int) (sprite.getHeight()*extra), this);
 			
 			if (debug && hitboxes)
 				g.drawPolygon(sprite.getPolygon());
