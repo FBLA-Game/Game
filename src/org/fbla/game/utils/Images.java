@@ -113,13 +113,20 @@ public class Images {
 			break;
 		}
 		
-		int color = Color.getColor(rgb);
+		float[] h = Color.RGBtoHSB(r, g, b, null);
+		int color = Color.HSBtoRGB(h[0], h[1], h[2]);
+		int dcolor = Color.HSBtoRGB(h[0], h[1], h[2]-50);
+		int lcolor = Color.HSBtoRGB(h[0], h[1], h[2]-20);
 		
 		for(int x=0;x!=image.getWidth();x++){
 			for(int y=0;y!=image.getHeight();y++){
-				if(image.getRGB(x, y)==-3881984){
-					image.setRGB(x, y, col);
-				}
+				if(image.getRGB(x, y) == Color.decode("#C4C400").getRGB())
+					image.setRGB(x, y, color);
+				if(image.getRGB(x, y) == Color.decode("#484800").getRGB())
+					image.setRGB(x, y, dcolor);
+				if(image.getRGB(x, y) == Color.decode("#939300").getRGB())
+					image.setRGB(x, y, lcolor);
+				
 			}
 		}
 		
