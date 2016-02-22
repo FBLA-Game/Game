@@ -26,4 +26,6 @@ public class Arrow extends Projectile  {
         loadImage("tools/arrow.png");
         setImageDimensions(16, 4, 0, 0);
     }	
+    
+    
 }
