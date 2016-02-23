@@ -421,7 +421,7 @@ public class GameBoard extends Board implements ActionListener {
 			if (x==14||x==15)
 				continue;
 			else
-				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE));
+				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE, FloorBottom.STONE));
 		}	
 		for(int y=0;y!=7;y++){
 			level8.add(new Wall(16*30,y*30,30,State.VERTICAL));
