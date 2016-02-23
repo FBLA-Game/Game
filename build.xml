@@ -15,7 +15,7 @@
 	
   
  
-	<target name="test" depends="dist">
+	<target name="test" depends="clean">
 		<echo message="Done." />
 	</target>
 
