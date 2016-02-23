@@ -38,10 +38,9 @@
 		<!-- Create the distribution directory -->
 		<mkdir dir="${dist}/lib"/>
 
-		<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-		<jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+		<jar jarfile="${dist}/lib/${title}-${version}.jar" basedir="${build}"/>
     
-		<echo message="Created distro." />
+		<echo message="Created files: ${title}-${version}.jar, ${title}-latest.jar" />
 	</target>
 	
 	
