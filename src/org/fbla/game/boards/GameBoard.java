@@ -254,6 +254,8 @@ public class GameBoard extends Board implements ActionListener {
 		
 		}
 		
+		level1.add(new Door(5*30, 9*15, 1));
+		
 		
 		
 		for(int y=5;y!=12;y++){

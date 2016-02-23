@@ -12,6 +12,7 @@ import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 
+import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.tools.Key;
 
 public class Images {
@@ -97,6 +98,11 @@ public class Images {
 		colorKey(toBufferedImage(image), key);
 		
 	}
+	public static void colorDoor(Image image, Door door) {
+		
+		colorDoor(toBufferedImage(image), door);
+		
+	}
 	
 	public static void colorKey(BufferedImage image, Key key) {
 		
@@ -132,32 +138,42 @@ public class Images {
 		
 		key.loadImage(image);
 		
+	}
+	
+	
+	public static void colorDoor(BufferedImage image, Door door) {
 		
+		int r=0;
+		int g=0;
+		int b=0;
+		switch(door.getID()){
+		case 1:
+			r=255;
+			g=0;
+			b=0;
+			break;
+		default:
+			break;
+		}
 		
+		float[] h = Color.RGBtoHSB(r, g, b, null);
+		int color = Color.HSBtoRGB(h[0], h[1], h[2]);
+		int dcolor = Color.HSBtoRGB(h[0], h[1], h[2]-50);
+		int lcolor = Color.HSBtoRGB(h[0], h[1], h[2]-20);
 		
+		for(int x=0;x!=image.getWidth();x++){
+			for(int y=0;y!=image.getHeight();y++){
+				if(image.getRGB(x, y) == Color.decode("#C4C400").getRGB())
+					image.setRGB(x, y, color);
+				if(image.getRGB(x, y) == Color.decode("#484800").getRGB())
+					image.setRGB(x, y, dcolor);
+				if(image.getRGB(x, y) == Color.decode("#939300").getRGB())
+					image.setRGB(x, y, lcolor);
+				
+			}
+		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		door.loadImage(image);
 		
 	}
 }
