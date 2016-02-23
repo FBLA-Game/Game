@@ -218,6 +218,11 @@ public class MenuBoard extends Board implements ActionListener {
 				LEVEL_DEBUG = 9;
 			}
 			
+			if(event.getKeyCode() == KeyEvent.VK_0){
+				Utils.setPlayerLevel(10);
+				LEVEL_DEBUG = 10;
+			}
+			
 			
 			
 			if(event.getKeyCode() == KeyEvent.VK_D){

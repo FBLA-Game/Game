@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import org.fbla.game.Bridge;
 import org.fbla.game.sprites.Player;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
@@ -152,6 +153,13 @@ public class Entity extends Sprite {
 	public void interact(){
 		if(interact != null){
 			interact.run();
+		}
+	}
+
+	public void removeTool(Tool tool) {
+		setTool(null);
+		if(this instanceof Player){
+			Bridge.getPlayer().inventory.remove(tool);
 		}
 	}
 

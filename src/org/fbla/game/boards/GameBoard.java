@@ -89,6 +89,7 @@ public class GameBoard extends Board implements ActionListener {
 	ArrayList<Sprite> level7 = new ArrayList<>();
 	ArrayList<Sprite> level8 = new ArrayList<>();
 	ArrayList<Sprite> level9 = new ArrayList<>();
+	ArrayList<Sprite> level10 = new ArrayList<>();
 	private HashMap<Integer, ArrayList<Sprite>> levels = new HashMap<>();
 
 	public static int maxlives = 5;
@@ -165,6 +166,7 @@ public class GameBoard extends Board implements ActionListener {
 		level7.clear();
 		level8.clear();
 		level9.clear();
+		level10.clear();
 		levels.clear();
 		
 		
@@ -183,6 +185,7 @@ public class GameBoard extends Board implements ActionListener {
 		level7.clear();
 		level8.clear();
 		level9.clear();
+		level10.clear();
 		
 		if(debug){
 			if(i==1) loadLevel1(true);
@@ -194,6 +197,7 @@ public class GameBoard extends Board implements ActionListener {
 			if(i==7) loadLevel7(true);
 			if(i==8) loadLevel8(true);
 			if(i==9) loadLevel9(true);
+			if(i==10) loadLevel10(true);
 			
 			return;
 			
@@ -208,6 +212,7 @@ public class GameBoard extends Board implements ActionListener {
 		loadLevel7(false);
 		loadLevel8(false);
 		loadLevel9(false);
+		loadLevel10(false);
 
 		
 		
@@ -489,6 +494,49 @@ public class GameBoard extends Board implements ActionListener {
 		
 	}
 	
+	private void loadLevel10(boolean debug){
+		
+		for(int x=25;x!=32;x++){
+			level10.add(new Floor(x*30,-30,Floor.GRAY_STONE,FloorBottom.BLUE_STONE));
+		}
+		
+		
+		for(int x=17;x!=32;x++){
+			level10.add(new Floor(x*30, 5*30,Floor.GRAY_STONE));
+		}
+		
+		for(int x=0;x!=16;x++){
+			level10.add(new FallingWall(x*30, 10*30,30,State.HORIZONTAL));
+		}
+		
+		
+		for(int x=0;x!=32;x++){
+			level10.add(new Floor(x*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE));
+		}
+		
+		for(int y=1;y!=16;y++){
+			level10.add(new Ladder(16*30, y*30));
+		}
+		
+		for(int x=0;x!=16;x++){
+			if(x==0)
+				level10.add(new Key(x*30, 19*15, 1));
+			else level10.add(new Gold(x*30+11, 10*30-11));
+		}
+		
+		level10.add(new Door(25*30, 7*15, 1));
+		
+		level10.add(new Gate(31*30, 8*15, GateType.FLAG));
+		
+
+		
+
+		if(!debug) level10.add(Bridge.getPlayer());
+		
+		levels.put(10, level10);
+		
+	}
+	
 
 	public ArrayList<Sprite> getLevel(int level) {
 		
@@ -710,16 +758,7 @@ public class GameBoard extends Board implements ActionListener {
 		g.setColor(Color.black);
 		g.setFont(new Font("Helvetica", Font.BOLD, 20));
 		
-		for(int life=0;life!=maxlives ;life++){
-			if(life < Bridge.getPlayer().lives){
-				g.drawImage(Texture.loadTexture("heart.png"), life*30, 1*15, 30, 30, this);
-			} else g.drawImage(Texture.loadTexture("broken_heart.png"), life*30, 1*15, 30, 30, this);
-		}
 		
-		
-		g.drawString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20);
-		g.drawString("Tool:", (B_WIDTH / 2 + B_WIDTH) / 2, 40);
-		g.drawString("Level: " + Bridge.getPlayer().level, (B_WIDTH / 2 + B_WIDTH) / 2, 60);
 		
 		for (Sprite sprite : sprites) {
 			
@@ -907,6 +946,24 @@ public class GameBoard extends Board implements ActionListener {
 		if(in && debug) this.sprite.drawInfo(mx, my, g);
 		
 		e=0;
+		
+		for(int life=0;life!=maxlives ;life++){
+			if(life < Bridge.getPlayer().lives){
+				g.drawImage(Texture.loadTexture("heart.png"), life*30, 1*15, 30, 30, this);
+			} else g.drawImage(Texture.loadTexture("broken_heart.png"), life*30, 1*15, 30, 30, this);
+		}
+		
+		g.setColor(Color.WHITE);
+		
+		g.drawString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20);
+		g.drawString("Tool:", (B_WIDTH / 2 + B_WIDTH) / 2, 40);
+		g.drawString("Level: " + Bridge.getPlayer().level, (B_WIDTH / 2 + B_WIDTH) / 2, 60);
+		
+		//Black shadow
+		g.setColor(Color.BLACK);
+		g.drawString("Score: " + Bridge.getPlayer().getScore(), ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 20-1);
+		g.drawString("Tool:", ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 40-1);
+		g.drawString("Level: " + Bridge.getPlayer().level, ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 60-1);
 
 	}
 

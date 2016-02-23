@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
+import org.fbla.game.sprites.tools.Key;
 import org.fbla.game.utils.Direction;
 
 import res.Texture;
@@ -41,6 +42,9 @@ public class Sprite {
 	public void remove(){
 		((GameBoard)Bridge.getGame().getBoard()).removeSprite(this);
 		exists = false;
+		if(getType() == SpriteType.KEY){
+			((Key) this).getEntity().removeTool((Tool) this);
+		}
     }
     
     public SpriteType getType(){return null;}

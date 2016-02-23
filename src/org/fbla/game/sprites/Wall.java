@@ -9,11 +9,18 @@ public class Wall extends Sprite {
 	State state;
 	int size;
 
-    public Wall(int x, int y, int size, State state) {
+	public Wall(int x, int y, int size, State state) {
         super(x, y);
         this.state = state;
         this.size = size;
         init();
+    }
+	
+	public Wall(int x, int y, int size, State state,boolean invisible) {
+        super(x, y);
+        this.state = state;
+        this.size = size;
+        initInvisible();
     }
     
     @Override
@@ -52,6 +59,29 @@ public class Wall extends Sprite {
     		break;
     		default:
     			loadImage("wall/vertical.png");
+    			break;
+    	}
+    }
+    
+    private void initInvisible() {
+    	
+    	switch(state){
+    	case VERTICAL:
+    		loadImage("empty.png");
+    		height = size;
+    		setImageDimensions(2, size);
+    		break;
+    	case LARGE_VERTICAL:
+    		loadImage("empty.png");
+    		break;
+    		
+    	case HORIZONTAL:
+    		loadImage("empty.png");
+    		setImageDimensions(size, 2);
+    		width = size;
+    		break;
+    		default:
+    			loadImage("empty.png");
     			break;
     	}
     }

@@ -1,5 +1,6 @@
 package org.fbla.game.sprites;
 
+import org.fbla.game.Bridge;
 import org.fbla.game.sprites.tools.Key;
 import org.fbla.game.spriteutils.DoorState;
 import org.fbla.game.spriteutils.Interactable;
@@ -42,6 +43,8 @@ public class Door extends Interactable {
     			type = SpriteType.OPEN_DOOR;
     			loadImage(Texture.loadTexture("objects/door_open.png"));
     	    	setImageDimensions(30, 45);
+    	    	Images.colorDoor(getImage(), this);
+    	    	if(((Key) tool).getID() != -1)Bridge.getPlayer().getTool().remove();
     		}
     	}
     }
