@@ -5,6 +5,7 @@ import org.fbla.game.spriteutils.DoorState;
 import org.fbla.game.spriteutils.Interactable;
 import org.fbla.game.spriteutils.SpriteType;
 import org.fbla.game.spriteutils.Tool;
+import org.fbla.game.utils.Images;
 
 import res.Texture;
 
@@ -28,6 +29,7 @@ public class Door extends Interactable {
     private void init() {
     	loadImage(Texture.loadTexture("objects/door.png"));
     	setImageDimensions(30, 45);
+    	Images.colorDoor(getImage(),this);
     }
     
     @Override
@@ -38,9 +40,13 @@ public class Door extends Interactable {
     	if(tool instanceof Key){
     		if(((Key) tool).getID() == id || ((Key) tool).getID() == -1){
     			type = SpriteType.OPEN_DOOR;
-    			loadImage(Texture.loadTexture("door_open.png"));
-    	    	setImageDimensions(2, 45);
+    			loadImage(Texture.loadTexture("objects/door_open.png"));
+    	    	setImageDimensions(30, 45);
     		}
     	}
     }
+
+	public int getID() {
+		return id;
+	}
 }
