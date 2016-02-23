@@ -17,6 +17,8 @@ public class PropertiesFile {
 	}
 	
 	public String getProperty(String property){
+		if(property == "version")
+			return properties.getProperty("major") + "." + properties.getProperty("minor") + "." + properties.getProperty("distro");
 		return properties.getProperty(property);
 	}
 
