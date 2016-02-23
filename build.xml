@@ -41,10 +41,24 @@
 		<mkdir dir="${dist}/${major}.0.0/${major}.${minor}.x"/>
 		<mkdir dir="${dist}/latest"/>
 
-		<jar jarfile="${dist}/${major}.0.0/${major}.${minor}.x/${title}-${version}.jar" basedir="${build}"/>
-		<jar jarfile="${dist}/latest/${title}-latest.jar" basedir="${build}"/>
+		<jar jarfile="${dist}/${major}.0.0/${major}.${minor}.x/${title}-${version}.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="org.fbla.game.Bridge"/>
+			</manifest>
+		</jar>
+		
+		<jar jarfile="${dist}/latest/${title}-latest.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="org.fbla.game.Bridge"/>
+			</manifest>
+		</jar>
     
 		<echo message="Created files: ${title}-${version}.jar, ${title}-latest.jar" />
+	</target>
+	
+	<target name="clean" depends="dist" description="clean up">
+		<delete dir="${build}"/>	
+		<delete dir="${src}"/>	
 	</target>
 	
 	
