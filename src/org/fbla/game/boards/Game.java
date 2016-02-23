@@ -13,8 +13,8 @@ import javax.swing.JFrame;
 import org.fbla.game.Bridge;
 import org.fbla.game.spriteutils.Tool;
 import org.fbla.game.utils.Board;
+import org.fbla.game.utils.PropertiesFile;
 import org.fbla.game.utils.Utils;
-import org.fbla.game.utils.XmlFile;
 
 import res.Texture;
 
@@ -27,7 +27,7 @@ public class Game extends JFrame {
 	public int DEBUG_LEVEL = 1;
 	private String version;
 	public Board board;
-	public XmlFile description = new XmlFile(new File("description.xml"));
+	public PropertiesFile description = new PropertiesFile(new File("description.properties"));
 
 	public Game() {
 		
@@ -45,7 +45,7 @@ public class Game extends JFrame {
 		
 	}
 	
-	public XmlFile getDescriptionFile(){
+	public PropertiesFile getDescriptionFile(){
 		return description;
 	}
 

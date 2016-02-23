@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class XmlFile {
+public class PropertiesFile {
 	
 	private Properties properties = new Properties();
-	public XmlFile(File file) {
+	public PropertiesFile(File file) {
 		try {
 			properties.loadFromXML(new FileInputStream(file));
 		} catch (Exception e) {

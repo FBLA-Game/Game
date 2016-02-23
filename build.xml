@@ -4,6 +4,7 @@
 	<property name="src" location="src"/>
 	<property name="build" location="build"/>
 	<property name="dist" location="dist"/>
+	<property file="build.properties" />
 	
 	
 
@@ -18,6 +19,7 @@
 
 	<target name="init">
   	
+		<echo message="Building ${title} version ${version}." />
   	
 		<!-- Create the time stamp -->
 		<tstamp/>
