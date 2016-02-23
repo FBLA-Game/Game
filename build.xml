@@ -12,7 +12,7 @@
 	
   
  
-	<target name="test" depends="clean">
+	<target name="test" depends="compile">
 		<echo message="Done." />
 	</target>
 
