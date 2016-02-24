@@ -81,7 +81,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
 		
 		
-		g.drawString(Bridge.getGame().description.getProperty("title"), (M_WIDTH/2) - (g.getFontMetrics().stringWidth(Bridge.getGame().description.getProperty("title"))/2), 55);
+		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, 15));

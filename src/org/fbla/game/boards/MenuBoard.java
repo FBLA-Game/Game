@@ -97,8 +97,7 @@ public class MenuBoard extends Board implements ActionListener {
 		
 		g.setFont(Bridge.font);
 		
-		g.drawString(Bridge.getGame().description.getProperty("title").toUpperCase(), M_WIDTH/2 - (g.getFontMetrics().stringWidth(Bridge.getGame().description.getProperty("title"))/2), 50);
-		
+		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		
