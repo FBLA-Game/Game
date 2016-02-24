@@ -20,7 +20,8 @@ public class Wall extends Sprite {
         super(x, y);
         this.state = state;
         this.size = size;
-        initInvisible();
+        if(invisible)initInvisible();
+        else init();
     }
     
     @Override
