@@ -9,7 +9,7 @@ public class PropertiesFile {
 	private Properties properties = new Properties();
 	public PropertiesFile(File file) {
 		try {
-			properties.loadFromXML(new FileInputStream(file));
+			properties.load(new FileInputStream(file));
 		} catch (Exception e) {
 			
 			e.printStackTrace();
