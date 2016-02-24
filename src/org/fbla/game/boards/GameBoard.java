@@ -374,19 +374,19 @@ public class GameBoard extends Board implements ActionListener {
 			level6.add(new Wall(i * 30, (i * 30)/2, 32, State.HORIZONTAL));
 		}
 		
-
-		for (int x = 0; x != 19; x++) {
-			level6.add(new Floor((x * 30), 16 * 30,Floor.BLUE_STONE));
-		}
-		for (int y = 8; y!= 16; y++) {
-			level6.add(new Ladder((17 * 30), (y*30)-3));
-		}
 		for (int x=2; x!= 17;x++){
 			if(x==1|| x==2 || x==3 || x==5 || x==7 || x==9 || x==11 || x==13 || x== 14 || x==15 || x==16)
 				level6.add(new Floor((x*30), 11*30,Floor.BLUE_STONE));
 			else
 				continue;
 		}
+		for (int x = 0; x != 19; x++) {
+			level6.add(new Floor((x * 30), 16 * 30,Floor.BLUE_STONE));
+		}
+		for (int y = 8; y!= 16; y++) {
+			level6.add(new Ladder((17 * 30), (y*30)-3));
+		}
+		
 		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
 		level6.add(new Wall ((2*30),2*30,12*30,State.VERTICAL));
 		level6.add(new Gate(0, (15* 30)-2,GateType.FLAG));
@@ -416,34 +416,28 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	
 	private void loadLevel8(boolean debug){
-		
-		for(int x=0;x!=32;x++){
-			if (x==14||x==15)
-				continue;
-			else
-				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE, FloorBottom.STONE));
-		}	
+	
 		for(int y=0;y!=7;y++){
 			level8.add(new Wall(16*30,y*30,30,State.VERTICAL));
 		}
 		for(int y=0;y!=10;y++){
 			level8.add(new Wall(32*30,y*30,30,State.VERTICAL));	
 		}
+		for(int x=0;x!=32;x++){
+			if (x==14||x==15)
+				continue;
+			else
+				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE, FloorBottom.STONE));
+		}
 		
-
 		Switch s =  
 				new Switch(35*30, 35*30,new Sprite[]{ 
 						new Wall(16*30,6*30,90, State.VERTICAL)
 						
 				}, level8, Rotation.LEFT, InteractionMethod.DISAPPEAR);
-		
-
 	
 		if(!debug) s.interact();
 		
-
-		
-
 		Switch s2 = new Switch(35*30, 35*30, new Sprite[]{
 				new Wall(14*30,9*30,60, State.HORIZONTAL)
 		},level8, Rotation.LEFT, InteractionMethod.DISAPPEAR);
@@ -455,10 +449,6 @@ public class GameBoard extends Board implements ActionListener {
 				s,
 				s2
 		},level8,Rotation.LEFT,InteractionMethod.TRIGGER));
-		
-				
-		
-		
 				
 		for (int x=14;x!=30;x++){
 			level8.add(new Floor(x*30,15*30,Floor.BLUE_STONE));
@@ -467,10 +457,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		level8.add(new Bow(5*30, 7*30));
 		level8.add(new Gate(29*30,14*30,GateType.FLAG));
-		
-		
-		
-		
+	
 		if(!debug) level8.add(Bridge.getPlayer());
 		
 		levels.put(8, level8);
