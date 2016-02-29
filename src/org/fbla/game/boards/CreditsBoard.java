@@ -86,8 +86,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, 15));
 		g.drawString("Authors & Developers:", M_WIDTH/2 - (g.getFontMetrics().stringWidth("Authors & Developers:")/2), 100);
-	g.clearRect(0, 0, 0, 0);
-		String a = Bridge.getGame().description.getProperty("authors");
+		String a = "Cameron Witcher, Joseph Phillips";
 		g.drawString(a, M_WIDTH/2 - (g.getFontMetrics().stringWidth(a)/2), 120);
 
 		for (Clickable clickable : clickables) {

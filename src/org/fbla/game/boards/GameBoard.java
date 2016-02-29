@@ -573,6 +573,8 @@ public class GameBoard extends Board implements ActionListener {
 		level6.clear();
 		level7.clear();
 		level8.clear();
+		level9.clear();
+		level10.clear();
 		loadLevels(false, 0);
 		ingame = false;
 		loaded = false;
@@ -634,6 +636,10 @@ public class GameBoard extends Board implements ActionListener {
 		ingame = true;
 
 		loaded = true;
+		
+		if(Utils.getPlayerLevel() == 1){
+			loadHelp();
+		}
 
 	}
 
@@ -852,10 +858,23 @@ public class GameBoard extends Board implements ActionListener {
 			g.drawString("Entities: " + e, 0, 130);
 		}
 
+
+		g.setFont(new Font("Helvetica", Font.BOLD, 20));
 		
+		g.setColor(Color.WHITE);
+		
+		g.drawString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20);
+		g.drawString("Tool:", (B_WIDTH / 2 + B_WIDTH) / 2, 40);
+		g.drawString("Level: " + Bridge.getPlayer().level, (B_WIDTH / 2 + B_WIDTH) / 2, 60);
+		
+		//Black shadow
+		g.setColor(Color.BLACK);
+		g.drawString("Score: " + Bridge.getPlayer().getScore(), ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 20-1);
+		g.drawString("Tool:", ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 40-1);
+		g.drawString("Level: " + Bridge.getPlayer().level, ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 60-1);
 
 		if (paused) {
-			g.drawImage(Texture.loadTexture("darken.png"), 0, 0, null);
+			g.drawImage(Texture.loadTexture("backgrounds/darken.png"), 0, 0, null);
 		}
 
 		for (Entry<Integer, String> entry : messages.entrySet()) {
@@ -947,17 +966,7 @@ public class GameBoard extends Board implements ActionListener {
 			} else g.drawImage(Texture.loadTexture("broken_heart.png"), life*30, 1*15, 30, 30, this);
 		}
 		
-		g.setColor(Color.WHITE);
 		
-		g.drawString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20);
-		g.drawString("Tool:", (B_WIDTH / 2 + B_WIDTH) / 2, 40);
-		g.drawString("Level: " + Bridge.getPlayer().level, (B_WIDTH / 2 + B_WIDTH) / 2, 60);
-		
-		//Black shadow
-		g.setColor(Color.BLACK);
-		g.drawString("Score: " + Bridge.getPlayer().getScore(), ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 20-1);
-		g.drawString("Tool:", ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 40-1);
-		g.drawString("Level: " + Bridge.getPlayer().level, ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 60-1);
 
 	}
 
