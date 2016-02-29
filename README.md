@@ -1,4 +1,4 @@
-# Trinnoriva [![Build Status](https://travis-ci.org/UpsilonTeam/UpsilonBeta.svg?branch=master)](https://travis-ci.org/UpsilonTeam/UpsilonBeta)
+# Trinnoriva [![Build Status](https://travis-ci.org/FBLA-Game/Game.svg?branch=master)](https://travis-ci.org/FBLA-Game/Game)
 An open source game for FBLA
 
 ##How to play
