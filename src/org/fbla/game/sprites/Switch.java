@@ -29,7 +29,7 @@ public class Switch extends Interactable {
         level.add(sprite);
         this.method = method;
         this.rotation = rotation;
-        initFloor();
+        init();
     }
 	
 	public Switch(int x, int y, Sprite[] sprites, ArrayList<Sprite> level, Rotation rotation, InteractionMethod method) {
@@ -41,7 +41,7 @@ public class Switch extends Interactable {
         this.rotation = rotation;
         multiple = true;
         this.method = method;
-        initFloor();
+        init();
     }
     
     @Override
@@ -49,7 +49,7 @@ public class Switch extends Interactable {
     	return type;
     }
 
-    private void initFloor() {
+    private void init() {
         
         loadImage(Images.rotate(Texture.loadTexture("objects/switch.png"), rotation.getRotation()));
         getImageDimensions();

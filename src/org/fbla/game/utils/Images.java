@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Polygon;
 import java.awt.Toolkit;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
@@ -175,5 +176,16 @@ public class Images {
 		
 		door.loadImage(image);
 		
+	}
+	
+	public static void setPolygon(Polygon p, Image image){
+		BufferedImage i = toBufferedImage(image);
+		for(int x=0;x!=i.getWidth();x++){
+			for(int y=0;y!=i.getHeight();y++){
+				if(i.getTransparency() == BufferedImage.TRANSLUCENT){
+					i.setRGB(x, y, Color.RED.getRGB());
+				}
+			}
+		}
 	}
 }

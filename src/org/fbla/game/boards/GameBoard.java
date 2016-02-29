@@ -758,7 +758,14 @@ public class GameBoard extends Board implements ActionListener {
 				g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
 				
 			}
-			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()*extra), (int) (sprite.getHeight()*extra), this);
+			if(sprite instanceof Switch){
+				g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight(), this);
+				
+				if (debug && hitboxes)
+					g.drawPolygon(sprite.getPolygon());
+				continue;
+			}
+			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()), (int) (sprite.getHeight()), this);
 			
 			if (debug && hitboxes)
 				g.drawPolygon(sprite.getPolygon());

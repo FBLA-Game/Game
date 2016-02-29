@@ -9,6 +9,7 @@ import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
 import org.fbla.game.sprites.tools.Key;
 import org.fbla.game.utils.Direction;
+import org.fbla.game.utils.Images;
 
 import res.Texture;
 
@@ -55,6 +56,8 @@ public class Sprite {
 
         width = image.getWidth(null);
         height = image.getHeight(null);
+        
+        getPolygon();
     }
     
     protected void setImageDimensions(int width, int height, int bw, int bh) {
@@ -64,6 +67,8 @@ public class Sprite {
         this.bw = bw;
         this.bh = bh;
         
+        getPolygon();
+        
         
     }
     
@@ -71,6 +76,8 @@ public class Sprite {
 
         this.width = width;
         this.height = height;
+        
+        getPolygon();
         
         
     }
@@ -129,6 +136,7 @@ public class Sprite {
     }
 
     public Polygon getPolygon() {
+    	Images.setPolygon(bounds,image);
     	bounds = new Polygon(new int[] {x,x+width,x+width,x}, new int[] {y+height,y+height,y,y}, 4);
     	return bounds;
     }
