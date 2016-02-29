@@ -33,6 +33,8 @@
 	<target name="compile" depends="init" description="compile the source">
 		<!-- Compile the java code from ${src} into ${build} -->
 		<javac srcdir="${src}" destdir="${build}"/>
+		<mkdir dir="${build}/images" />
+		<mkdir dir="${build}/sounds" />
 		<copy todir="${build}/images">
 		    <fileset dir="${src}/images"/>
 		</copy>
