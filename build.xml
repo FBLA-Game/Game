@@ -67,8 +67,8 @@
 	</target>
 	
 	<target name="clean" depends="dist" description="clean up">
-		<!--  <delete dir="${build}"/>	
-		<delete dir="${src}"/>	-->
+		<delete dir="${build}"/>	
+		<delete dir="${src}"/>
 	</target>
 	
 	
