@@ -7,7 +7,7 @@ import org.fbla.game.spriteutils.Entity;
 import org.fbla.game.spriteutils.Moveable;
 import org.fbla.game.spriteutils.SpriteType;
 
-public class FallingFloor extends Entity implements Moveable {
+public class FallingFloor extends Entity {
 	
 	public boolean t;
 

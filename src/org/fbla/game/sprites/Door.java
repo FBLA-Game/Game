@@ -44,7 +44,9 @@ public class Door extends Interactable {
     			loadImage(Texture.loadTexture("objects/door_open.png"));
     	    	setImageDimensions(30, 45);
     	    	Images.colorDoor(getImage(), this);
-    	    	if(((Key) tool).getID() != -1)Bridge.getPlayer().getTool().remove();
+    	    	if(((Key) tool).getID() != -1){
+    	    		Bridge.getPlayer().removeTool(tool);
+    	    	}
     		}
     	}
     }

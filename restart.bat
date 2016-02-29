@@ -1,1 +1,3 @@
-echo level:1-score:1000>"C:/Upsilon/config.txt"
+cd C:\KANSAS_WELLSVILLE_HIGHSCHOOL\
+rmdir master
+PAUSE

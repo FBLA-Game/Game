@@ -27,11 +27,12 @@ public class Utils {
 	public static int player_score;
 	private static String root;
 	private static File rootFile;
+	public static boolean firsttime = false;
 	public static HashMap<Integer, Background> backgrounds = new HashMap<>();
 	public static HashMap<Integer, int[]> spawns = new HashMap<>();
 
 	public static void init() {
-		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/Upsilon/";
+		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/";
 		config = new File(root + "/config.txt");
 		
 		
@@ -165,14 +166,25 @@ public class Utils {
 	}
 
 	public static void runInstall() {
-		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/Upsilon/";
+		
+		broadcastMessage("install");
+		
+		firsttime = true;
+		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/";
 		rootFile = new File(root);
 		if (!rootFile.exists())
 			rootFile.mkdirs();
 		config = new File(root + "/config.txt");
 		
 
+		try {
+			config.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (!config.getParentFile().mkdirs()) {
+			
 		}
 		
 		
@@ -196,7 +208,7 @@ public class Utils {
 
 		
 
-
+		init();
 
 	}
 

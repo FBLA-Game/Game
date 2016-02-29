@@ -19,6 +19,7 @@ public enum FloorBottom {
 	public Color getColor(){
 		return Color.decode(color);
 	}
+	
 	public String getHex(){
 		return color;
 	}

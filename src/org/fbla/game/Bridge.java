@@ -42,11 +42,16 @@ public class Bridge {
 		gameBoardSize.put(1, 540);
 		game = new Game();
 		game.init();
+		
 		File file = new File("C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/");
 		if (!file.exists()) {
 			Utils.runInstall();
+			return;
 		}
 		Utils.init();
+		
+		
+		
 		
 		
 		

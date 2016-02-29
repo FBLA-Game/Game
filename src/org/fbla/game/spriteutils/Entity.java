@@ -11,7 +11,7 @@ import org.fbla.game.utils.Direction;
 import org.fbla.game.utils.Images;
 import org.fbla.game.utils.Utils;
 
-public class Entity extends Sprite {
+public class Entity extends Sprite implements Moveable {
 
 	public double health;
 	public double maxhealth;
@@ -157,10 +157,29 @@ public class Entity extends Sprite {
 	}
 
 	public void removeTool(Tool tool) {
-		setTool(null);
+		tool.setEntity(null);
+		this.tool = null;
 		if(this instanceof Player){
 			Bridge.getPlayer().inventory.remove(tool);
 		}
+	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disable() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enable() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -33,6 +33,8 @@ import org.fbla.game.sprites.tools.*;
 import org.fbla.game.spriteutils.*;
 import org.fbla.game.utils.*;
 
+import com.sun.corba.se.impl.copyobject.CopierManagerImpl;
+
 import res.Texture;
 
 public class GameBoard extends Board implements ActionListener {
@@ -637,7 +639,7 @@ public class GameBoard extends Board implements ActionListener {
 
 		loaded = true;
 		
-		if(Utils.getPlayerLevel() == 1){
+		if(Utils.getPlayerLevel() == 1 && Utils.firsttime){
 			loadHelp();
 		}
 
@@ -760,7 +762,9 @@ public class GameBoard extends Board implements ActionListener {
 				continue;
 			}
 			if(sprite instanceof Floor){
-				g.setColor(((Floor) sprite).getBackgroundType().getColor());
+				Color color = ((Floor) sprite).getBackgroundType().getColor();
+				g.setColor(color);
+				
 				g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
 				
 			}
