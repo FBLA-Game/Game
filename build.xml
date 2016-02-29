@@ -33,13 +33,15 @@
 	<target name="compile" depends="init" description="compile the source">
 		<!-- Compile the java code from ${src} into ${build} -->
 		<javac srcdir="${src}" destdir="${build}"/>
-		<mkdir dir="${build}/images" />
-		<mkdir dir="${build}/sounds" />
-		<copy todir="${build}/images">
-		    <fileset dir="${src}/images"/>
+		
+		<mkdir dir="${build}/res/images" />
+		<mkdir dir="${build}/res/sounds" />
+		
+		<copy todir="${build}/res/images">
+		    <fileset dir="${src}/res/images"/>
 		</copy>
 		<copy todir="sounds">
-		    <fileset dir="${src}/sounds"/>
+		    <fileset dir="${src}/res/sounds"/>
 		</copy>
 		<echo message="Compiled project." />
 	</target>
