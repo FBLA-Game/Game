@@ -178,14 +178,14 @@ public class Images {
 		
 	}
 	
-	public static void setPolygon(Polygon p, Image image){
-		BufferedImage i = toBufferedImage(image);
-		for(int x=0;x!=i.getWidth();x++){
-			for(int y=0;y!=i.getHeight();y++){
-				if(i.getTransparency() == BufferedImage.TRANSLUCENT){
-					i.setRGB(x, y, Color.RED.getRGB());
-				}
-			}
-		}
-	}
+//	public static void setPolygon(Polygon p, Image image){
+//		BufferedImage i = toBufferedImage(image);
+//		for(int x=0;x!=i.getWidth();x++){
+//			for(int y=0;y!=i.getHeight();y++){
+//				if(i.getTransparency() == BufferedImage.TRANSLUCENT){
+//					i.setRGB(x, y, Color.RED.getRGB());
+//				}
+//			}
+//		}
+//	}
 }

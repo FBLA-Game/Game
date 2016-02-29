@@ -10,10 +10,10 @@ public class Texture {
 	public static Image loadTexture(String resource){
 		
 		try {
-			return new ImageIcon(Texture.class.getResource("res/images/" + resource)).getImage();
+			return new ImageIcon(Texture.class.getResource("images/" + resource)).getImage();
 		} catch (Exception e) {
 			try {
-				return new ImageIcon(Texture.class.getResource("res/images/unknown.png")).getImage();
+				return new ImageIcon(Texture.class.getResource("images/unknown.png")).getImage();
 			} catch (Exception e1) {
 				return null;
 			}
@@ -23,7 +23,7 @@ public class Texture {
 	public static File loadFont(String resource){
 		
 		try {
-			return new File(Texture.class.getResource("/res/font/" + resource).getFile());
+			return new File(Texture.class.getResource("/font/" + resource).getFile());
 		} catch (Exception e) {
 			return null;
 		}

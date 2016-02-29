@@ -136,7 +136,6 @@ public class Sprite {
     }
 
     public Polygon getPolygon() {
-    	Images.setPolygon(bounds,image);
     	bounds = new Polygon(new int[] {x,x+width,x+width,x}, new int[] {y+height,y+height,y,y}, 4);
     	return bounds;
     }
