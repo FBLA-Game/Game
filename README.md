@@ -2,7 +2,7 @@
 An open source game for FBLA
 
 ##How to play
-Visit upsilonbeta.github.com and click the download link, and run with Java.
+Visit [the download page](http://vps69891.vps.ovh.ca:8080/job/Trinnorica/ws/downloads/latest), download the latest version, and run with Java.
 
 ###Controls
 Move Left - "A" or the left arrow key
