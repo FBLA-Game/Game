@@ -33,6 +33,12 @@
 	<target name="compile" depends="init" description="compile the source">
 		<!-- Compile the java code from ${src} into ${build} -->
 		<javac srcdir="${src}" destdir="${build}"/>
+		<copy todir="${build}/images">
+		    <fileset dir="${src}/images"/>
+		</copy>
+		<copy todir="sounds">
+		    <fileset dir="${src}/sounds"/>
+		</copy>
 		<echo message="Compiled project." />
 	</target>
 
