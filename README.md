@@ -1,4 +1,4 @@
-# Trinnoriva [![Build Status](https://travis-ci.org/FBLA-Game/Game.svg?branch=master)](https://travis-ci.org/FBLA-Game/Game)
+# Trinnorica [![Build Status](https://travis-ci.org/FBLA-Game/Game.svg?branch=master)](https://travis-ci.org/FBLA-Game/Game)
 An open source game for FBLA
 
 ##How to play
@@ -11,4 +11,4 @@ Climb Up - "W" or the up arrow key
 Climb Down - "S" or the down arrow key
 Jump - SPACE
 Open Inventory - "E"
-Use tool - SHIFT
+Use tool - "SHIFT"
