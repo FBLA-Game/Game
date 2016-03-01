@@ -648,13 +648,9 @@ public class GameBoard extends Board implements ActionListener {
 	public void loadHelp() {
 
 		paused = true;
-		Utils.displayMessage(1, "Welcome to " + Bridge.getGame().description.getProperty("title") + ". Here is some help for you.", B_WIDTH / 2, 40, -1, "#FFFFFF", 25);
 		Utils.displayMessage(13, "(Press ESC to play)", B_WIDTH / 2, 100, -1, "#FFFFFF", 20);
 
 		Utils.displayMessage(2, "These are coins. Pick them up to gain points!", 272, 578, -1, "#FFFFFF", 15);
-
-		Utils.displayMessage(3, "This a bow. If you pick it up, it'll appear in your \"tool\" slot.", 9 * 15,
-				14 * 15, -1, "#FFFFFF", 15);
 
 		Utils.displayMessage(4, "<--- This is your HUD --->", B_WIDTH / 2, 15, -1, "#FFFFFF", 10);
 
@@ -665,7 +661,7 @@ public class GameBoard extends Board implements ActionListener {
 		Utils.displayMessage(8, "Up -> \"W\" or the up arrow", B_WIDTH / 2, B_HEIGHT / 2, -1, "#FFFFFF", 10);
 		Utils.displayMessage(9, "Down -> \"S\" or the down arrow", B_WIDTH / 2, (B_HEIGHT / 2) + 10, -1, "#FFFFFF", 10);
 		Utils.displayMessage(10, "Jump -> SPACE", B_WIDTH / 2, (B_HEIGHT / 2) + 20, -1, "#FFFFFF", 10);
-		Utils.displayMessage(11, "Open Inventory -> \"E\"", B_WIDTH, 30, -1, "#FFFFFF", 10);
+		Utils.displayMessage(11, "Open Inventory -> \"E\"", B_WIDTH/2, (B_HEIGHT / 2) + 30, -1, "#FFFFFF", 10);
 		Utils.displayMessage(12, "Use tool -> SHIFT", B_WIDTH / 2, (B_HEIGHT / 2) + 40, -1, "#FFFFFF", 10);
 		
 
@@ -877,6 +873,12 @@ public class GameBoard extends Board implements ActionListener {
 		g.drawString("Tool:", ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 40-1);
 		g.drawString("Level: " + Bridge.getPlayer().level, ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 60-1);
 
+		for(int life=0;life!=maxlives ;life++){
+			if(life < Bridge.getPlayer().lives){
+				g.drawImage(Texture.loadTexture("heart.png"), life*30, 1*15, 30, 30, this);
+			} else g.drawImage(Texture.loadTexture("broken_heart.png"), life*30, 1*15, 30, 30, this);
+		}
+		
 		if (paused) {
 			g.drawImage(Texture.loadTexture("backgrounds/darken.png"), 0, 0, null);
 		}
@@ -964,11 +966,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		e=0;
 		
-		for(int life=0;life!=maxlives ;life++){
-			if(life < Bridge.getPlayer().lives){
-				g.drawImage(Texture.loadTexture("heart.png"), life*30, 1*15, 30, 30, this);
-			} else g.drawImage(Texture.loadTexture("broken_heart.png"), life*30, 1*15, 30, 30, this);
-		}
+		
 		
 		
 
