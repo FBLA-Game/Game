@@ -716,7 +716,7 @@ public class GameBoard extends Board implements ActionListener {
 	}
 
 	private void drawWin(Graphics g) {
-		Button restart = new Button("Restart", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
+		Button restart = new Button("Try again", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
 				Color.decode("#44cc44"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.RESTART);
 		clickables.clear();
 		clickables.add(restart);
@@ -986,7 +986,7 @@ public class GameBoard extends Board implements ActionListener {
 			String reason = gameStatus.split(":")[1];
 			reason = reason.replaceAll("_", " ");
 
-			Button restart = new Button("Restart", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
+			Button restart = new Button("Try again", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
 					Color.decode("#950000"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.RESTART);
 			
 			
