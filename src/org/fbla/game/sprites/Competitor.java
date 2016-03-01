@@ -19,7 +19,7 @@ import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
 
-public class Knobber extends Entity implements Moveable,Keyable {
+public class Competitor extends Entity implements Moveable,Keyable {
 	
 	public boolean onground = false;
 	private int dy;
@@ -30,7 +30,7 @@ public class Knobber extends Entity implements Moveable,Keyable {
 	private boolean left = false;
 	private boolean right = false;
 	
-	public Knobber(int x, int y) {
+	public Competitor(int x, int y) {
         super(x, y);
         init();
         score = 10;
@@ -39,7 +39,7 @@ public class Knobber extends Entity implements Moveable,Keyable {
         setDirection(Direction.RIGHT);
     }
 	
-	public Knobber(int x, int y, Interaction interact) {
+	public Competitor(int x, int y, Interaction interact) {
         super(x, y);
         init();
         score = 10;
@@ -51,7 +51,7 @@ public class Knobber extends Entity implements Moveable,Keyable {
     
     @Override
     public SpriteType getType(){
-    	return SpriteType.KNOBBER;
+    	return SpriteType.COMPETITOR;
     }
 
     private void init() {
@@ -85,7 +85,7 @@ public class Knobber extends Entity implements Moveable,Keyable {
 			
 			try{
 				for (Sprite sprite : ((GameBoard)Bridge.getGame().getBoard()).sprites) {
-					if(sprite instanceof Knobber) continue;
+					if(sprite instanceof Competitor) continue;
 					if(sprite.getSubType().equals(SpriteSubType.CLIMABLE)) continue;
 					if (!getPolygon().intersects(sprite.getPolygon().getBounds())){
 						continue;

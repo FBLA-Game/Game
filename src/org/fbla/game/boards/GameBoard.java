@@ -64,6 +64,7 @@ public class GameBoard extends Board implements ActionListener {
 	private boolean fs = false;
 	public double extra = 1;
 	private int e = 0;
+	private int d=15;
 	
 	private GraphicsDevice vc;
 	
@@ -310,41 +311,44 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel4(boolean debug) {
 		
-		for(int x=4;x!=15;x++){
-			level4.add(new Floor((x*30),(4*30),Floor.BLUE_STONE));
-		}
-		for(int y=3;y!=8;y++){
-			level4.add(new Ladder((3*30), (y*30)));
-		}
-		for(int x=3;x!=31;x++){
-			level4.add(new Floor((x*30),(8*30),Floor.BLUE_STONE));
-		}
-		for(int y=8;y!=18;y++){
-			level4.add(new Ladder((31*30),(y*30)));
-		}
-		for(int y=13;y!=18;y++){
-			level4.add(new Ladder((18*30),(y*30)));
-		}
-		for(int y=13;y!=18;y++){
-			level4.add(new Ladder((7*30),(y*30)));
-		}
-		
 		for(int x=0;x!=32;x++){
+			if(x>2&&x<31){
+				if(x>3&&x<15)
+					level4.add(new Floor((x*30),(4*30),Floor.BLUE_STONE));
+				level4.add(new Floor((x*30),(8*30),Floor.BLUE_STONE));
+			}
+
 			if(x>=8 && x<=17)
 				level4.add(new Floor((x*30), (13*30),Floor.GRASS,FloorBottom.DIRT));
 			else
-			level4.add(new Floor((x*30), 533,Floor.GRASS));
+			level4.add(new Floor((x*30), 17*30,Floor.GRASS));
+			
+		
+				
 			
 		}
 		
 		
+		for(int y = 3;y!=17;y++){
+			if(y<8)
+				level4.add(new Ladder((3*30),(y*30)));
+			if(y>6){
+				level4.add(new Ladder((31*30),(y*30)));
+				if(y>11){
+					level4.add(new Ladder((7*30),(y*30)));
+					level4.add(new Ladder((18*30),(y*30)));
+				}
+			}
+		}
 		
 		
 		
 		
 		
-		level4.add(new Gate((14 * 30)-4, (3 * 30)-4,GateType.FLAG));
-		level4.add(new Knobber(11 * 15, 13 * 15));
+		
+		
+		
+		level4.add(new Gate((14 * 30), (3 * 30),GateType.FLAG));
 		if(!debug) level4.add(Bridge.getPlayer());
 
 		levels.put(4, level4);
@@ -788,10 +792,10 @@ public class GameBoard extends Board implements ActionListener {
 				g.fillRect(sprite.x, sprite.y, (int) (30*extra), (((sprite.x+getHeight()))));
 				g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), (int) (sprite.getWidth()*extra), (int) (sprite.getHeight()*extra), this);
 				break;
-			case KNOBBER:
-				Knobber sk = (Knobber) s;
+			case COMPETITOR:
+				Competitor sk = (Competitor) s;
 				g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (Bridge.getPlayer().getWalkingWidth()), (int) (Bridge.getPlayer().getWalkingHeight()), this);
-				((Knobber) s).drawHealthBar(g, sk.x - (50 / 2), sk.y - 20, 50, 5);
+				((Competitor) s).drawHealthBar(g, sk.x - (50 / 2), sk.y - 20, 50, 5);
 				break;
 			case ARROW:
 				
@@ -840,38 +844,15 @@ public class GameBoard extends Board implements ActionListener {
 			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), this);
 		}
 
-		if (debug) {
-			g.setColor(Color.black);
-			g.setFont(new Font("Helvetica", Font.BOLD, 10));
-			g.drawString("Version: " + Bridge.getGame().getVersion(), 0, 10);
-			g.drawString("Gravity: " + player.gravity, 0, 20);
-			g.drawString("Falling: " + player.falling, 0, 30);
-			g.drawString("Onground: " + player.onground, 0, 40);
-			g.drawString("Jumping: " + player.jumping, 0, 50);
-			g.drawString("Speed: " + player.speedboost, 0, 60);
-			g.drawString("Location: " + player.x + ":" + player.y, 0, 70);
-			g.drawString("Left: " + player.left, 0, 80);
-			g.drawString("Right: " + player.right, 0, 90);
-			g.drawString("Up: " + player.up, 0, 100);
-			g.drawString("Climbing: " + player.climbing, 0, 110);
-			g.drawString("Level: " + player.level, 0, 120);
-			g.drawString("Entities: " + e, 0, 130);
-		}
+		
 
 
-		g.setFont(new Font("Helvetica", Font.BOLD, 20));
+		g.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		
-		g.setColor(Color.WHITE);
+		drawOutlineString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20, g, Color.WHITE, Color.BLACK);
+		drawOutlineString("Tool:", (B_WIDTH / 2 + B_WIDTH) / 2, 40, g, Color.WHITE, Color.BLACK);
+		drawOutlineString("Level: " + Bridge.getPlayer().level, (B_WIDTH / 2 + B_WIDTH) / 2, 60, g, Color.WHITE, Color.BLACK);
 		
-		g.drawString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20);
-		g.drawString("Tool:", (B_WIDTH / 2 + B_WIDTH) / 2, 40);
-		g.drawString("Level: " + Bridge.getPlayer().level, (B_WIDTH / 2 + B_WIDTH) / 2, 60);
-		
-		//Black shadow
-		g.setColor(Color.BLACK);
-		g.drawString("Score: " + Bridge.getPlayer().getScore(), ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 20-1);
-		g.drawString("Tool:", ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 40-1);
-		g.drawString("Level: " + Bridge.getPlayer().level, ((B_WIDTH / 2 + B_WIDTH) / 2)-1, 60-1);
 
 		for(int life=0;life!=maxlives ;life++){
 			if(life < Bridge.getPlayer().lives){
@@ -967,9 +948,44 @@ public class GameBoard extends Board implements ActionListener {
 		e=0;
 		
 		
+		if (debug) {
+			
+			g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, d));
+			
+			drawOutlineString("Version: " + Bridge.getGame().getVersion(), 0, d, g, Color.WHITE, Color.BLACK);
+			
+				
+			drawOutlineString("Gravity: " + player.gravity, 0, d*2, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Falling: " + player.falling, 0, d*3, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Onground: " + player.onground, 0, d*4, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Jumping: " + player.jumping, 0, d*5, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Speed: " + player.speedboost, 0, d*6, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Location: " + player.x + ":" + player.y, 0, d*7, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Left: " + player.left, 0, d*8, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Right: " + player.right, 0, d*9, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Up: " + player.up, 0, d*10, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Climbing: " + player.climbing, 0, d*11, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Level: " + player.level, 0, d*12, g, Color.WHITE, Color.BLACK);
+			drawOutlineString("Entities: " + e, 0, d*13, g, Color.WHITE, Color.BLACK);
+			
+		
+			
+		}
+		
+		
 		
 		
 
+	}
+	
+	private void drawOutlineString(String string, int x, int y, Graphics g, Color inside, Color outside){
+		g.setColor(outside);
+		g.drawString(string, x-1, y-1);
+		g.drawString(string, x-1, y+1);
+		g.drawString(string, x+1, y-1);
+		g.drawString(string, x+1, y+1);
+		g.setColor(inside);
+		g.drawString(string, x, y);
 	}
 
 	private void drawGameOver(Graphics g) {

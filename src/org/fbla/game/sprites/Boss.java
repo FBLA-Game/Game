@@ -40,7 +40,7 @@ public class Boss extends Entity implements Moveable,Keyable {
     
     @Override
     public SpriteType getType(){
-    	return SpriteType.KNOBBER;
+    	return SpriteType.COMPETITOR;
     }
 
     private void init() {
@@ -74,7 +74,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 			
 			try{
 				for (Sprite sprite : ((GameBoard)Bridge.getGame().getBoard()).sprites) {
-					if(sprite instanceof Knobber) continue;
+					if(sprite instanceof Competitor) continue;
 					if(sprite.getSubType().equals(SpriteSubType.CLIMABLE)) continue;
 					if (!getPolygon().intersects(sprite.getPolygon().getBounds())){
 						continue;
