@@ -33,7 +33,7 @@ public class Door extends Interactable {
 
     private void init() {
     	loadImage(Texture.loadTexture("objects/door.png"));
-    	setImageDimensions(30, 45);
+    	setImageDimensions(30, 87);
     	Images.colorDoor(getImage(),this);
     }
     
@@ -53,7 +53,7 @@ public class Door extends Interactable {
     		if(((Key) tool).getID() == id || ((Key) tool).getID() == -1){
     			type = SpriteType.OPEN_DOOR;
     			loadImage(Texture.loadTexture("objects/door_open.png"));
-    	    	setImageDimensions(30, 45);
+    	    	setImageDimensions(30,87);
     	    	Images.colorDoor(getImage(), this);
     	    	if(((Key) tool).getID() != -1){
     	    		Bridge.getPlayer().removeTool(tool);

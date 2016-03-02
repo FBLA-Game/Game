@@ -262,7 +262,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		}
 		
-		level1.add(new Door(5*30, 9*15, 1));
+		level1.add(new Door(5*30, (6*15)+3, 1));
 		
 		
 		
@@ -517,7 +517,7 @@ public class GameBoard extends Board implements ActionListener {
 			else level10.add(new Gold(x*30+11, 10*30-11));
 		}
 		
-		level10.add(new Door(25*30, 7*15, 1));
+		level10.add(new Door(25*30, (4*15)+3, 1));
 		
 		level10.add(new Gate(31*30, 8*15, GateType.FLAG));
 		
