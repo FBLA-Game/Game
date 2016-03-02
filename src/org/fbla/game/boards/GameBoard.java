@@ -1365,9 +1365,9 @@ public class GameBoard extends Board implements ActionListener {
 //			if(e.getKeyCode() == KeyEvent.VK_8){
 //				Utils.setPlayerLevel(8);
 //			}
-//			for (Sprite sprite : getLevel(Bridge.player.level))
-//				if (sprite instanceof Keyable)
-//					((Keyable) sprite).keyPressed(e);
+			for (Sprite sprite : getLevel(Bridge.player.level))
+				if (sprite instanceof Keyable)
+					((Keyable) sprite).keyPressed(e);
 		}
 	}
 

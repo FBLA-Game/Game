@@ -38,7 +38,9 @@ public class Door extends Interactable {
     
     @Override
     public void interact(){
-    	Utils.displayMessage(new Random().nextInt(), "You don't have the key to open this door equipt.", (Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("You don't have the key to open this door equipt.")/2), (Bridge.getGameBoardSize(1))-Bridge.getGameBoardSize(1)/7, 3, "#FFFFFF", 15);
+    	Utils.displayMessage(new Random().nextInt(), "You don't have the key to open this door equipt.",
+    			(Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("You don't have the key to open this door equipt.")/2),
+    			(Bridge.getGameBoardSize(1))/2, 20, "#FFFFFF", 15);
     }
     
     @Override
