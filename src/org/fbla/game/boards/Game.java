@@ -60,7 +60,7 @@ public class Game extends JFrame {
 		setResizable(false);
 		pack();
 
-		setTitle(description.getProperty("title"));
+		setTitle("Trinnorica");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -73,7 +73,7 @@ public class Game extends JFrame {
 
 	public void start() {
 		clear();
-		setTitle(description.getProperty("title"));
+		setTitle("Trinnorica");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setIconImage(Texture.loadTexture("logo.png"));

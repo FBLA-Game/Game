@@ -114,13 +114,12 @@ public class GameBoard extends Board implements ActionListener {
 
 		gameStatus = "ingame";
 
-		Utils.savePlayerInfo(Bridge.getPlayer());
 
 		addKeyListener(new TAdapter());
 		addMouseMotionListener(new MMListener());
 		addMouseListener(new MListener());
 		setFocusable(true);
-		setBackground(Color.RED);
+		setBackground(Color.GREEN);
 
 		loadLevels(false, 0);
 
@@ -405,14 +404,17 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel7(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
-			if(x==14||x==15||x==16)
-				level7.add(new Spike(x*30, 6*30));
-			else
-				level7.add(new Floor(x*30, 6*30,Floor.BLUE_STONE));
+			if(x==14||x==15){
+				level7.add(new Spike(x*30, (11*15)+2));
+			}
+			if(x<28)
+			level7.add(new Floor(x*30, 6*30,Floor.BLUE_STONE));
+			
+			level7.add(new Floor(x*30,(12*30)-x*2,Floor.GRASS));
 		}
 		
 		
-		level7.add(new Gate(31*30,5*30-1,GateType.FLAG));
+		level7.add(new Gate(0*30,11*30-1,GateType.FLAG));
 		
 		
 		if(!debug) level7.add(Bridge.getPlayer());

@@ -75,6 +75,7 @@ public class Player extends Entity implements Moveable,Keyable {
 		initPlayer();
 		health= 100;
 		maxhealth = 100;
+		level = 1;
 		
 	}
 
@@ -587,8 +588,6 @@ public class Player extends Entity implements Moveable,Keyable {
 		lives = lives - 1;
 		((GameBoard) Bridge.getGame().getBoard()).loadLevel();
 		sscore = 0;
-		x = 0;
-		y = 0;
 		health = 100;
 		if (lives <= 0) {
 			((GameBoard)Bridge.getGame().getBoard()).gameStatus = "gameover:" + reason.getMessage();
