@@ -290,7 +290,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		}
 		
-		level2.add(new Gate((19 * 30)+10, (29* 15)-2, GateType.FLAG));
+		level2.add(new Gate((24 * 30)+10, (29* 15)+7, GateType.FLAG));
 		if(!debug) level2.add(Bridge.getPlayer());
 
 		levels.put(2, level2);
@@ -298,13 +298,13 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel3(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
-			if(x>=5 && x<=10)
+			if(x>=5 && x<=20)
 				level3.add(new FallingFloor(x*30, 15*30));
 			else level3.add(new Floor(x*30, 15*30,Floor.GRASS));
 		
 		}
 		
-		level3.add(new Gate((19 * 30)+10, (14* 30)-2, GateType.FLAG));
+		level3.add(new Gate((22 * 30)+10, (14* 30)-2, GateType.FLAG));
 		if(!debug) level3.add(Bridge.getPlayer());
 
 		levels.put(3, level3);
@@ -364,7 +364,7 @@ public class GameBoard extends Board implements ActionListener {
 		for(int x=5;x!=24;x++){
 			level5.add(new FallingWall((x*30), (8*30), 30, State.HORIZONTAL));
 		}
-		level5.add(new Wall((24*30),(12*30), 30,State.HORIZONTAL));
+		level5.add(new FallingFloor((24*30),(12*30)));
 		
 		level5.add(new Gate(5*30, 7*30,GateType.FLAG));
 		if(!debug) level5.add(Bridge.getPlayer());
@@ -377,12 +377,12 @@ public class GameBoard extends Board implements ActionListener {
 		level6.add(new Wall(0 * 30, 2 * 30, (30*3)+30, State.HORIZONTAL));
 
 		for (int  i= 4; i != 17; i++) {
-			level6.add(new Wall(i * 30, (i * 30)/2, 32, State.HORIZONTAL));
+			level6.add(new Wall(i * 30, ((i * 30)/2)+5, 32, State.HORIZONTAL));
 		}
 		
 		for (int x=2; x!= 17;x++){
 			if(x==1|| x==2 || x==3 || x==5 || x==7 || x==9 || x==11 || x==13 || x== 14 || x==15 || x==16)
-				level6.add(new Floor((x*30), 11*30,Floor.BLUE_STONE));
+				level6.add(new Floor((x*30), (11*30),Floor.BLUE_STONE));
 			else
 				continue;
 		}
@@ -390,7 +390,7 @@ public class GameBoard extends Board implements ActionListener {
 			level6.add(new Floor((x * 30), 16 * 30,Floor.BLUE_STONE));
 		}
 		for (int y = 8; y!= 16; y++) {
-			level6.add(new Ladder((17 * 30), (y*30)-3));
+			level6.add(new Ladder((17 * 30), (y*30)));
 		}
 		
 		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL,Wall.BLACK_WALL), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
@@ -507,7 +507,7 @@ public class GameBoard extends Board implements ActionListener {
 			level10.add(new Floor(x*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE));
 		}
 		
-		for(int y=1;y!=16;y++){
+		for(int y=4;y!=16;y++){
 			level10.add(new Ladder(16*30, y*30));
 		}
 		
@@ -1256,7 +1256,7 @@ public class GameBoard extends Board implements ActionListener {
 				}
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_F11){
+		if(e.getKeyCode() == KeyEvent.VK_F11){
 				
 				Utils.broadcastMessage(extra + "");
 				if(!fs){
@@ -1346,38 +1346,38 @@ public class GameBoard extends Board implements ActionListener {
 				
 			}
 			
-//			if(e.getKeyCode() == KeyEvent.VK_1){
-//				Utils.setPlayerLevel(1);
-//				loadLevel();
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_2){
-//				Utils.setPlayerLevel(2);
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_3){
-//				Utils.setPlayerLevel(3);
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_4){
-//				Utils.setPlayerLevel(4);
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_5){
-//				Utils.setPlayerLevel(5);
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_6){
-//				Utils.setPlayerLevel(6);
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_7){
-//				Utils.setPlayerLevel(7);
-//			}
-//			
-//			if(e.getKeyCode() == KeyEvent.VK_8){
-//				Utils.setPlayerLevel(8);
-//			}
+			if(e.getKeyCode() == KeyEvent.VK_1){
+				Utils.setPlayerLevel(1);
+				loadLevel();
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_2){
+				Utils.setPlayerLevel(2);
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_3){
+				Utils.setPlayerLevel(3);
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_4){
+				Utils.setPlayerLevel(4);
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_5){
+				Utils.setPlayerLevel(5);
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_6){
+				Utils.setPlayerLevel(6);
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_7){
+				Utils.setPlayerLevel(7);
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_8){
+				Utils.setPlayerLevel(8);
+			}
 			for (Sprite sprite : getLevel(Bridge.player.level))
 				if (sprite instanceof Keyable)
 					((Keyable) sprite).keyPressed(e);
@@ -1468,3 +1468,4 @@ public class GameBoard extends Board implements ActionListener {
 	
 
 }
+
