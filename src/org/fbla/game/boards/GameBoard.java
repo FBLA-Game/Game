@@ -652,21 +652,21 @@ public class GameBoard extends Board implements ActionListener {
 	public void loadHelp() {
 
 		paused = true;
-		Utils.displayMessage(13, "(Press ESC to play)", B_WIDTH / 2, 100, -1, "#FFFFFF", 20);
+		Utils.displayMessage(13, "(Press ESC to play)", B_WIDTH / 2, 100, -1, "#FFFFFF", 20,getFont());
 
-		Utils.displayMessage(2, "These are coins. Pick them up to gain points!", 272, 578, -1, "#FFFFFF", 15);
+		Utils.displayMessage(2, "These are coins. Pick them up to gain points!", 272, 578, -1, "#FFFFFF", 15, getFont());
 
-		Utils.displayMessage(4, "<--- This is your HUD --->", B_WIDTH / 2, 15, -1, "#FFFFFF", 10);
+		Utils.displayMessage(4, "<--- This is your HUD --->", B_WIDTH / 2, 15, -1, "#FFFFFF", 10, getFont());
 
-		Utils.displayMessage(5, "Controls", B_WIDTH / 2, (B_HEIGHT / 2) - 30, -1, "#FFFFFF", 10);
-		Utils.displayMessage(6, "Left-> \"A\" or the left arrow", B_WIDTH / 2, (B_HEIGHT / 2) - 20, -1, "#FFFFFF", 10);
+		Utils.displayMessage(5, "Controls", B_WIDTH / 2, (B_HEIGHT / 2) - 30, -1, "#FFFFFF", 10, getFont());
+		Utils.displayMessage(6, "Left-> \"A\" or the left arrow", B_WIDTH / 2, (B_HEIGHT / 2) - 20, -1, "#FFFFFF", 10, getFont());
 		Utils.displayMessage(7, "Right -> \"D\" or the right arrow", B_WIDTH / 2, (B_HEIGHT / 2) - 10, -1, "#FFFFFF",
-				10);
-		Utils.displayMessage(8, "Up -> \"W\" or the up arrow", B_WIDTH / 2, B_HEIGHT / 2, -1, "#FFFFFF", 10);
-		Utils.displayMessage(9, "Down -> \"S\" or the down arrow", B_WIDTH / 2, (B_HEIGHT / 2) + 10, -1, "#FFFFFF", 10);
-		Utils.displayMessage(10, "Jump -> SPACE", B_WIDTH / 2, (B_HEIGHT / 2) + 20, -1, "#FFFFFF", 10);
-		Utils.displayMessage(11, "Open Inventory -> \"E\"", B_WIDTH/2, (B_HEIGHT / 2) + 30, -1, "#FFFFFF", 10);
-		Utils.displayMessage(12, "Use tool -> SHIFT", B_WIDTH / 2, (B_HEIGHT / 2) + 40, -1, "#FFFFFF", 10);
+				10, getFont());
+		Utils.displayMessage(8, "Up -> \"W\" or the up arrow", B_WIDTH / 2, B_HEIGHT / 2, -1, "#FFFFFF", 10, getFont());
+		Utils.displayMessage(9, "Down -> \"S\" or the down arrow", B_WIDTH / 2, (B_HEIGHT / 2) + 10, -1, "#FFFFFF", 10, getFont());
+		Utils.displayMessage(10, "Jump -> SPACE", B_WIDTH / 2, (B_HEIGHT / 2) + 20, -1, "#FFFFFF", 10, getFont());
+		Utils.displayMessage(11, "Open Inventory -> \"E\"", B_WIDTH/2, (B_HEIGHT / 2) + 30, -1, "#FFFFFF", 10, getFont());
+		Utils.displayMessage(12, "Use tool -> SHIFT", B_WIDTH / 2, (B_HEIGHT / 2) + 40, -1, "#FFFFFF", 10, getFont());
 		
 
 	}
@@ -870,8 +870,8 @@ public class GameBoard extends Board implements ActionListener {
 			if (time != -1) {
 				g.setColor(Color.decode(info[4]));
 				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
-				if (info[0].contains("//n")) {
-					String[] m = info[0].split("//n");
+				if (info[0].contains("/n")) {
+					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
 						g.drawString(m[i], Integer.parseInt(info[1]),
 								Integer.parseInt(info[2]) + (i * Integer.parseInt(info[5])));
@@ -886,8 +886,8 @@ public class GameBoard extends Board implements ActionListener {
 			if (time == -1) {
 				g.setColor(Color.decode(info[4]));
 				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
-				if (info[0].contains("//n")) {
-					String[] m = info[0].split("//n");
+				if (info[0].contains("/n")) {
+					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
 						g.drawString(m[i], Integer.parseInt(info[1]) * 2,
 								Integer.parseInt(info[2]) + (i * Integer.parseInt(info[5])));
@@ -913,25 +913,38 @@ public class GameBoard extends Board implements ActionListener {
 			if (time != -1) {
 				g.setColor(Color.decode(info[4]));
 				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
-				g.drawString(info[0], player.x + Integer.parseInt(info[1]), player.y + Integer.parseInt(info[2]));
-				if (entry.getKey().equals(2))
-					if (time != 0)
-						strings_temp_player.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":"
-								+ (time - 1) + ":" + info[4] + ":" + info[5]);
+				if (info[0].contains("/n")) {
+					String[] m = info[0].split("/n");
+					for (int i = 0; i != m.length; i++) {
+						g.drawString(m[i], player.x+Integer.parseInt(info[1]),
+								player.y+(Integer.parseInt(info[2])+(i*Integer.parseInt(info[5]))));
+					}
+				} else
+					g.drawString(info[0], player.x+Integer.parseInt(info[1]), player.y+Integer.parseInt(info[2]));
+				if (time != 0)
+					strings_temp_player.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":" + (time - 1)
+							+ ":" + info[4] + ":" + info[5]);
 
 			}
 			if (time == -1) {
-				g.setColor(Color.decode(info[1]));
+				g.setColor(Color.decode(info[4]));
 				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
-				g.drawString(info[0], Integer.parseInt(info[2]), Integer.parseInt(info[3]));
-				if (entry.getKey().equals(2))
-					strings_temp_player.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":"
-							+ (time) + ":" + info[4] + ":" + info[4]);
+				if (info[0].contains("/n")) {
+					String[] m = info[0].split("/n");
+					for (int i = 0; i != m.length; i++) {
+						g.drawString(m[i], player.x+Integer.parseInt(info[1]),
+								player.y+(Integer.parseInt(info[2])+(i*Integer.parseInt(info[5]))));
+					}
+				} else
+					g.drawString(info[0], player.x+Integer.parseInt(info[1]), player.y+Integer.parseInt(info[2]));
+				strings_temp_player.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":" + time + ":"
+						+ info[4] + ":" + info[5]);
 			}
 		}
 		messages_player.clear();
 		for (String string : strings_temp_player) {
 			String[] info = string.split("~");
+
 			messages_player.put(Integer.parseInt(info[0]), info[1]);
 
 		}

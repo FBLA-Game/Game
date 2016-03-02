@@ -408,7 +408,7 @@ public class Player extends Entity implements Moveable,Keyable {
 					}
 					if(sprite.getSubType().equals(SpriteSubType.INTERACTABLE)){
 						interact = (Interactable)sprite;
-						Utils.displayMessage(new Random().nextInt(), "Press \"SHIFT\" to interact", (Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("Press \"SHIFT\" to interact")/2), (Bridge.getGameBoardSize(1))-Bridge.getGameBoardSize(1)/7, 3, "#FFFFFF", 20);
+						Utils.displayMessage(new Random().nextInt(), "Press \"SHIFT\" to interact", (Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("Press \"SHIFT\" to interact")/2), (Bridge.getGameBoardSize(1))-Bridge.getGameBoardSize(1)/7, 3, "#FFFFFF", 20,Bridge.getGame().getFont());
 //						Utils.addPlayerMessage(new Random().nextInt(), "Press \"SHIFT\" to interact", 30, 20, 210, "#000000", 15);
 					} else interact = null;
 					if (sprite.getSubType().equals(SpriteSubType.PARTIAL_COLLIDEABLE) && !jumping) {

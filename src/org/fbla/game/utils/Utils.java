@@ -108,8 +108,10 @@ public class Utils {
 		return spawns.get(level);
 	}
 
-	public static void displayMessage(int id, String message, int x, int y, int time, String color, int size) {
-		((GameBoard)Bridge.getGame().getBoard()).messages.put(id,message + ":"+ ((x - ((GameBoard)Bridge.getGame().getBoard()).getFontMetrics(new Font("Helvetica", Font.BOLD, size)).stringWidth(message)/ 2)) + ":" + y + ":" + time + ":" + color + ":" + size);
+	public static void displayMessage(int id, String message, int x, int y, int time, String color, int size,Font font) {
+		((GameBoard)Bridge.getGame().getBoard()).setFont(font);
+		((GameBoard)Bridge.getGame().getBoard()).getGraphics().setFont(font);
+		((GameBoard)Bridge.getGame().getBoard()).messages.put(id,message + ":"+ ((x - ((GameBoard)Bridge.getGame().getBoard()).getFontMetrics(font).stringWidth(message)/ 2)) + ":" + y + ":" + time + ":" + color + ":" + size);
 	}
 
 	public static void addPlayerMessage(int id, String message, int xmod, int ymod, int time, String color, int size) {

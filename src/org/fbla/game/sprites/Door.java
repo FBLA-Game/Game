@@ -1,5 +1,6 @@
 package org.fbla.game.sprites;
 
+import java.awt.Font;
 import java.util.Random;
 
 import org.fbla.game.Bridge;
@@ -38,9 +39,9 @@ public class Door extends Interactable {
     
     @Override
     public void interact(){
-    	Utils.displayMessage(new Random().nextInt(), "You don't have the key to open this door equipt.",
-    			(Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("You don't have the key to open this door equipt.")/2),
-    			(Bridge.getGameBoardSize(1))/2, 20, "#FFFFFF", 15);
+    	Font font = new Font(Font.MONOSPACED, Font.PLAIN, 15);
+    	Bridge.getGame().getBoard().getGraphics().setFont(font);
+    	Utils.addPlayerMessage(new Random().nextInt(), "You don't have the key to/nopen this door in your hand.", 20,50, 100, "#FFFFFF", 15);
     }
     
     @Override

@@ -60,7 +60,7 @@ public enum ButtonMethod {
 			((GameBoard)Bridge.getGame().getBoard()).clickables.clear();
 			String t = "You have equiped " + Bridge.player.inventory.get(b.l).getType().toString();
 			t = t.replaceAll("_", " ");
-			Utils.displayMessage(10, t, b.getGraphics().getFontMetrics().stringWidth(t)/2, 32, 100, "#FF0000", 12);
+			Utils.displayMessage(10, t, b.getGraphics().getFontMetrics().stringWidth(t)/2, 32, 100, "#FF0000", 12,Bridge.getGame().getFont());
 			
 		}
 		

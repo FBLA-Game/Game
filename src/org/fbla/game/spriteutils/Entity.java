@@ -42,8 +42,8 @@ public class Entity extends Sprite {
 
 	public void damage(int i, Entity damager, DamageReason reason) {
 		health = health - i;
-		Utils.displayMessage(new Random().nextInt(), "-" + i, x, y, 100, "#FF0000", 15);
-		Utils.displayMessage(new Random().nextInt(), getHealth() + "/" + getMaxHealth(), x, y - 15, 100, "#FF0000", 15);
+		Utils.displayMessage(new Random().nextInt(), "-" + i, x, y, 100, "#FF0000", 15,Bridge.getGame().getFont());
+		Utils.displayMessage(new Random().nextInt(), getHealth() + "/" + getMaxHealth(), x, y - 15, 100, "#FF0000", 15,Bridge.getGame().getFont());
 		if (health <= 0) {
 			this.kill(reason);
 			if (damager instanceof Player) {
@@ -55,8 +55,8 @@ public class Entity extends Sprite {
 
 	public void damage(int i, DamageReason reason) {
 		health = health - i;
-		Utils.displayMessage(new Random().nextInt(), "-" + i, x, y, 100, "#FF0000", 15);
-		Utils.displayMessage(new Random().nextInt(), getHealth() + "/" + getMaxHealth(), x, y - 15, 100, "#FF0000", 15);
+		Utils.displayMessage(new Random().nextInt(), "-" + i, x, y, 100, "#FF0000", 15,Bridge.getGame().getFont());
+		Utils.displayMessage(new Random().nextInt(), getHealth() + "/" + getMaxHealth(), x, y - 15, 100, "#FF0000", 15,Bridge.getGame().getFont());
 
 		if (health <= 0) {
 			this.kill(reason);
