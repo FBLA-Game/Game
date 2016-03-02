@@ -393,7 +393,7 @@ public class GameBoard extends Board implements ActionListener {
 			level6.add(new Ladder((17 * 30), (y*30)-3));
 		}
 		
-		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
+		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL,Wall.BLACK_WALL), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
 		level6.add(new Wall ((2*30),2*30,12*30,State.VERTICAL));
 		level6.add(new Gate(0, (15* 30)-2,GateType.FLAG));
 
