@@ -166,9 +166,9 @@ public class Player extends Entity implements Moveable,Keyable {
 			}
 
 			
-			if (key == KeyEvent.VK_0) {
-				Audio.playSound(Sound.TEST);
-			}
+//			if (key == KeyEvent.VK_0) {
+//				Audio.playSound(Sound.TEST);
+//			}
 			
 			
 			if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
@@ -188,19 +188,19 @@ public class Player extends Entity implements Moveable,Keyable {
 				if (!gravity)
 					dy = 2;
 			}
-			if (key == KeyEvent.VK_F) {
-				((GameBoard)Bridge.getGame().getBoard()).toggleGravity();
-			}
+//			if (key == KeyEvent.VK_F) {
+//				((GameBoard)Bridge.getGame().getBoard()).toggleGravity();
+//			}
 			if (key == KeyEvent.VK_H) {
 				((GameBoard)Bridge.getGame().getBoard()).toggleHitboxes();
 			}
-			if (key == KeyEvent.VK_EQUALS) {
-				speedboost = speedboost + 1;
-			}
-			if (key == KeyEvent.VK_MINUS) {
-				if ((speedboost - 1) >= 1)
-					speedboost = speedboost - 1;
-			}
+//			if (key == KeyEvent.VK_EQUALS) {
+//				speedboost = speedboost + 1;
+//			}
+//			if (key == KeyEvent.VK_MINUS) {
+//				if ((speedboost - 1) >= 1)
+//					speedboost = speedboost - 1;
+//			}
 			if (key == KeyEvent.VK_F3) {
 				((GameBoard)Bridge.getGame().getBoard()).toggleDebugMode();
 			}
@@ -213,24 +213,24 @@ public class Player extends Entity implements Moveable,Keyable {
 				openInventory(((GameBoard)Bridge.getGame().getBoard()));
 			}
 			
-			if (key == KeyEvent.VK_O && shifting) {
-
-				((GameBoard)Bridge.getGame().getBoard()).gameStatus = "won:" + level;
-				((GameBoard)Bridge.getGame().getBoard()).ingame = false;
-				x = 0;
-				y = 0;
-			
-			}
-			
-			if (key == KeyEvent.VK_K) {
-				
-				
-				if(shifting){
-					lives = 1;
-					ready = false;
-					kill(DamageReason.RANDOM);
-				}
-			}
+//			if (key == KeyEvent.VK_O && shifting) {
+//
+//				((GameBoard)Bridge.getGame().getBoard()).gameStatus = "won:" + level;
+//				((GameBoard)Bridge.getGame().getBoard()).ingame = false;
+//				x = 0;
+//				y = 0;
+//			
+//			}
+//			
+//			if (key == KeyEvent.VK_K) {
+//				
+//				
+//				if(shifting){
+//					lives = 1;
+//					ready = false;
+//					kill(DamageReason.RANDOM);
+//				}
+//			}
 		}
 	}
 	

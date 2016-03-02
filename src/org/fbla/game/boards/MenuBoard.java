@@ -164,69 +164,69 @@ public class MenuBoard extends Board implements ActionListener {
 
 			// Cameron
 			
-			if(event.getKeyCode() == KeyEvent.VK_C){
-				Bridge.DEBUG = true;
-				Bridge.getPlayer().inventory.clear();
-				Bridge.getPlayer().inventory.add(new Bow(0,0));
-				Bridge.getPlayer().inventory.add(new NinjaCloak(0,0));
-				Bridge.getPlayer().inventory.add(new Key(0, 0, -1));
-				Bridge.getPlayer().inventory.add(new FireBow(0, 0));
-				
-			}
-			if(event.getKeyCode() == KeyEvent.VK_1){
-				Utils.setPlayerLevel(1);
-				LEVEL_DEBUG = 1;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_2){
-				Utils.setPlayerLevel(2);
-				LEVEL_DEBUG = 2;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_3){
-				Utils.setPlayerLevel(3);
-				LEVEL_DEBUG = 3;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_4){
-				Utils.setPlayerLevel(4);
-				LEVEL_DEBUG = 4;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_5){
-				Utils.setPlayerLevel(5);
-				LEVEL_DEBUG = 5;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_6){
-				Utils.setPlayerLevel(6);
-				LEVEL_DEBUG = 6;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_7){
-				Utils.setPlayerLevel(7);
-				LEVEL_DEBUG = 7;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_8){
-				Utils.setPlayerLevel(8);
-				LEVEL_DEBUG = 8;
-			}
-			if(event.getKeyCode() == KeyEvent.VK_9){
-				Utils.setPlayerLevel(9);
-				LEVEL_DEBUG = 9;
-			}
-			
-			if(event.getKeyCode() == KeyEvent.VK_0){
-				Utils.setPlayerLevel(10);
-				LEVEL_DEBUG = 10;
-			}
-			
-			
-			
-			if(event.getKeyCode() == KeyEvent.VK_D){
-				Bridge.openLevelDebug(LEVEL_DEBUG);
-			}
+//			if(event.getKeyCode() == KeyEvent.VK_C){
+//				Bridge.DEBUG = true;
+//				Bridge.getPlayer().inventory.clear();
+//				Bridge.getPlayer().inventory.add(new Bow(0,0));
+//				Bridge.getPlayer().inventory.add(new NinjaCloak(0,0));
+//				Bridge.getPlayer().inventory.add(new Key(0, 0, -1));
+//				Bridge.getPlayer().inventory.add(new FireBow(0, 0));
+//				
+//			}
+//			if(event.getKeyCode() == KeyEvent.VK_1){
+//				Utils.setPlayerLevel(1);
+//				LEVEL_DEBUG = 1;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_2){
+//				Utils.setPlayerLevel(2);
+//				LEVEL_DEBUG = 2;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_3){
+//				Utils.setPlayerLevel(3);
+//				LEVEL_DEBUG = 3;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_4){
+//				Utils.setPlayerLevel(4);
+//				LEVEL_DEBUG = 4;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_5){
+//				Utils.setPlayerLevel(5);
+//				LEVEL_DEBUG = 5;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_6){
+//				Utils.setPlayerLevel(6);
+//				LEVEL_DEBUG = 6;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_7){
+//				Utils.setPlayerLevel(7);
+//				LEVEL_DEBUG = 7;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_8){
+//				Utils.setPlayerLevel(8);
+//				LEVEL_DEBUG = 8;
+//			}
+//			if(event.getKeyCode() == KeyEvent.VK_9){
+//				Utils.setPlayerLevel(9);
+//				LEVEL_DEBUG = 9;
+//			}
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_0){
+//				Utils.setPlayerLevel(10);
+//				LEVEL_DEBUG = 10;
+//			}
+//			
+//			
+//			
+//			if(event.getKeyCode() == KeyEvent.VK_D){
+//				Bridge.openLevelDebug(LEVEL_DEBUG);
+//			}
 			
 			//Cameron
 			//Hidden feature.

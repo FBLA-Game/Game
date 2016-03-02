@@ -364,7 +364,7 @@ public class GameBoard extends Board implements ActionListener {
 		for(int x=5;x!=24;x++){
 			level5.add(new FallingWall((x*30), (8*30), 30, State.HORIZONTAL));
 		}
-		level5.add(new FallingFloor((24*30),(12*30)));
+		level5.add(new FallingWall((24*30),(12*30),30,State.HORIZONTAL));
 		
 		level5.add(new Gate(5*30, 7*30,GateType.FLAG));
 		if(!debug) level5.add(Bridge.getPlayer());
@@ -374,27 +374,27 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel6(boolean debug) {
 		
-		level6.add(new Wall(0 * 30, 2 * 30, (30*3)+30, State.HORIZONTAL));
+		level6.add(new Wall(0 * 30, 2 * 30, (30*3)+30, State.HORIZONTAL,"C13424"));
 
 		for (int  i= 4; i != 17; i++) {
-			level6.add(new Wall(i * 30, ((i * 30)/2)+5, 32, State.HORIZONTAL));
+			level6.add(new Wall(i * 30, ((i * 30)/2)+5, 32, State.HORIZONTAL,"C13424"));
 		}
 		
 		for (int x=2; x!= 17;x++){
 			if(x==1|| x==2 || x==3 || x==5 || x==7 || x==9 || x==11 || x==13 || x== 14 || x==15 || x==16)
-				level6.add(new Floor((x*30), (11*30),Floor.BLUE_STONE));
+				level6.add(new Floor((x*30), (11*30),Floor.GRAY_STONE));
 			else
 				continue;
 		}
 		for (int x = 0; x != 19; x++) {
-			level6.add(new Floor((x * 30), 16 * 30,Floor.BLUE_STONE));
+			level6.add(new Floor((x * 30), 16 * 30,Floor.GRAY_STONE));
 		}
 		for (int y = 8; y!= 16; y++) {
 			level6.add(new Ladder((17 * 30), (y*30)));
 		}
 		
-		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL,Wall.BLACK_WALL), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
-		level6.add(new Wall ((2*30),2*30,12*30,State.VERTICAL));
+		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL,"C13424"), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
+		level6.add(new Wall ((2*30),2*30,12*30,State.VERTICAL,"C13424"));
 		level6.add(new Gate(0, (15* 30)-2,GateType.FLAG));
 
 		if(!debug) level6.add(Bridge.getPlayer());
@@ -488,7 +488,15 @@ public class GameBoard extends Board implements ActionListener {
 		
 		level9.add(new Wall(15*30,10*30,8*30,State.VERTICAL));
 		level9.add(new Wall(17*30,10*30,8*30,State.VERTICAL));
+		
+		
+		for(int y=8;y!=19;y++){
+			level9.add(new Gold(16*30,y*30));
+		}
+		
+		level9.add(new Gate(15*30-12, 37*15, 0));
 		level9.add(new Gate(16*30-12, 37*15, 0));
+		level9.add(new Gate(17*30-12, 37*15, 0));
 		
 		if(!debug) level9.add(Bridge.getPlayer());
 		
@@ -882,11 +890,11 @@ public class GameBoard extends Board implements ActionListener {
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
-						g.drawString(m[i], Integer.parseInt(info[1]),
-								Integer.parseInt(info[2]) + (i * Integer.parseInt(info[5])));
+						drawOutlineString(m[i], Integer.parseInt(info[1]),
+								Integer.parseInt(info[2]) + (i * Integer.parseInt(info[5])), g, Color.WHITE, Color.BLACK);
 					}
 				} else
-					g.drawString(info[0], Integer.parseInt(info[1]), Integer.parseInt(info[2]));
+				drawOutlineString(info[0], Integer.parseInt(info[1]), Integer.parseInt(info[2]), g, Color.WHITE, Color.BLACK);
 				if (time != 0)
 					strings_temp.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":" + (time - 1)
 							+ ":" + info[4] + ":" + info[5]);
@@ -898,11 +906,11 @@ public class GameBoard extends Board implements ActionListener {
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
-						g.drawString(m[i], Integer.parseInt(info[1]) * 2,
-								Integer.parseInt(info[2]) + (i * Integer.parseInt(info[5])));
+						drawOutlineString(m[i], Integer.parseInt(info[1]) * 2,
+								Integer.parseInt(info[2]) + (i * Integer.parseInt(info[5])), g, Color.WHITE, Color.BLACK);
 					}
 				} else
-					g.drawString(info[0], Integer.parseInt(info[1]), Integer.parseInt(info[2]));
+					drawOutlineString(info[0], Integer.parseInt(info[1]), Integer.parseInt(info[2]), g, Color.WHITE, Color.BLACK);
 				strings_temp.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":" + time + ":"
 						+ info[4] + ":" + info[5]);
 			}
@@ -925,11 +933,11 @@ public class GameBoard extends Board implements ActionListener {
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
-						g.drawString(m[i], player.x+Integer.parseInt(info[1]),
-								player.y+(Integer.parseInt(info[2])+(i*Integer.parseInt(info[5]))));
+						drawOutlineString(m[i], player.x+Integer.parseInt(info[1]),
+								player.y+(Integer.parseInt(info[2])+(i*Integer.parseInt(info[5]))), g, Color.WHITE, Color.BLACK);
 					}
 				} else
-					g.drawString(info[0], player.x+Integer.parseInt(info[1]), player.y+Integer.parseInt(info[2]));
+					drawOutlineString(info[0], player.x+Integer.parseInt(info[1]), player.y+Integer.parseInt(info[2]), g, Color.WHITE, Color.BLACK);
 				if (time != 0)
 					strings_temp_player.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":" + (time - 1)
 							+ ":" + info[4] + ":" + info[5]);
@@ -941,11 +949,11 @@ public class GameBoard extends Board implements ActionListener {
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
-						g.drawString(m[i], player.x+Integer.parseInt(info[1]),
-								player.y+(Integer.parseInt(info[2])+(i*Integer.parseInt(info[5]))));
+						drawOutlineString(m[i], player.x+Integer.parseInt(info[1]),
+								player.y+(Integer.parseInt(info[2])+(i*Integer.parseInt(info[5]))), g, Color.WHITE, Color.BLACK);
 					}
 				} else
-					g.drawString(info[0], player.x+Integer.parseInt(info[1]), player.y+Integer.parseInt(info[2]));
+					drawOutlineString(info[0], player.x+Integer.parseInt(info[1]), player.y+Integer.parseInt(info[2]), g, Color.WHITE, Color.BLACK);
 				strings_temp_player.add(entry.getKey() + "~" + info[0] + ":" + info[1] + ":" + info[2] + ":" + time + ":"
 						+ info[4] + ":" + info[5]);
 			}
@@ -1265,128 +1273,128 @@ public class GameBoard extends Board implements ActionListener {
 				}
 			}
 			
-		if(e.getKeyCode() == KeyEvent.VK_F11){
-				
-				Utils.broadcastMessage(extra + "");
-				if(!fs){
-					
-					timer.setDelay(DELAY/2);
-					Utils.broadcastMessage("FS false");
-					
-					Bridge.getGame().dispose();
-					Bridge.getGame().setUndecorated(true);
-					vc.setFullScreenWindow(Bridge.getGame());
-					fs = true;
-					extra = ((double) Bridge.getGame().getWidth())/((double) Bridge.getGameBoardSize(0));
-					
-					for(Sprite sprite : sprites){
-						sprite.x = (int) (sprite.x*extra);
-						sprite.y = (int) (sprite.y*extra);
-						sprite.height = (int) (sprite.height*extra);
-						sprite.width = (int) (sprite.width*extra);
-					}
-					
-					for(Moveable sprite : moveables){
-						((Sprite) sprite).x = (int) (((Sprite) sprite).x*extra);
-						((Sprite) sprite).y = (int) (((Sprite) sprite).y*extra);
-						((Sprite) sprite).height = (int) (((Sprite) sprite).height*extra);
-						((Sprite) sprite).width = (int) (((Sprite) sprite).width*extra);
-					}
-					
-					for(Sprite sprite : tools){
-						sprite.x = (int) (sprite.x*extra);
-						sprite.y = (int) (sprite.y*extra);
-						sprite.height = (int) (sprite.height*extra);
-						sprite.width = (int) (sprite.width*extra);
-					}
-					
-					Bridge.player.x = (int) (Bridge.player.x*extra);
-					Bridge.player.y = (int) (Bridge.player.y*extra);
-					Bridge.player.rh = (int) (Bridge.player.rh*extra);
-					Bridge.player.rw = (int) (Bridge.player.rw*extra);
-					Bridge.player.wh = (int) (Bridge.player.wh*extra);
-					Bridge.player.ww = (int) (Bridge.player.ww*extra);
-					
-					
-					return;
-				}
-				else {
-					
-					timer.setDelay(DELAY);
-					Utils.broadcastMessage("FS true");
-					
-					
-					for(Sprite sprite : sprites){
-						sprite.x = (int) (sprite.x/extra);
-						sprite.y = (int) (sprite.y/extra);
-						sprite.height = (int) (sprite.height/extra);
-						sprite.width = (int) (sprite.width/extra);
-					}
-					
-					for(Moveable sprite : moveables){
-						((Sprite) sprite).x = (int) (((Sprite) sprite).x/extra);
-						((Sprite) sprite).y = (int) (((Sprite) sprite).y/extra);
-						((Sprite) sprite).height = (int) (((Sprite) sprite).height/extra);
-						((Sprite) sprite).width = (int) (((Sprite) sprite).width/extra);
-					}
-					
-					for(Sprite sprite : tools){
-						sprite.x = (int) (sprite.x/extra);
-						sprite.y = (int) (sprite.y/extra);
-						sprite.height = (int) (sprite.height/extra);
-						sprite.width = (int) (sprite.width/extra);
-					}
-					
-					Bridge.player.x = (int) (Bridge.player.x/extra);
-					Bridge.player.y = (int) (Bridge.player.y/extra);
-					Bridge.player.rh = (int) (Bridge.player.rh/extra);
-					Bridge.player.rw = (int) (Bridge.player.rw/extra);
-					Bridge.player.wh = (int) (Bridge.player.wh/extra);
-					Bridge.player.ww = (int) (Bridge.player.ww/extra);
-					fs = false;
-					Bridge.getGame().dispose();
-					vc.setFullScreenWindow(null);
-					Bridge.getGame().setUndecorated(false);
-					Bridge.getGame().setVisible(true);
-					
-					extra = 1;
-					
-				}
-				
-			}
+//		if(e.getKeyCode() == KeyEvent.VK_F11){
+//				
+//				Utils.broadcastMessage(extra + "");
+//				if(!fs){
+//					
+//					timer.setDelay(DELAY/2);
+//					Utils.broadcastMessage("FS false");
+//					
+//					Bridge.getGame().dispose();
+//					Bridge.getGame().setUndecorated(true);
+//					vc.setFullScreenWindow(Bridge.getGame());
+//					fs = true;
+//					extra = ((double) Bridge.getGame().getWidth())/((double) Bridge.getGameBoardSize(0));
+//					
+//					for(Sprite sprite : sprites){
+//						sprite.x = (int) (sprite.x*extra);
+//						sprite.y = (int) (sprite.y*extra);
+//						sprite.height = (int) (sprite.height*extra);
+//						sprite.width = (int) (sprite.width*extra);
+//					}
+//					
+//					for(Moveable sprite : moveables){
+//						((Sprite) sprite).x = (int) (((Sprite) sprite).x*extra);
+//						((Sprite) sprite).y = (int) (((Sprite) sprite).y*extra);
+//						((Sprite) sprite).height = (int) (((Sprite) sprite).height*extra);
+//						((Sprite) sprite).width = (int) (((Sprite) sprite).width*extra);
+//					}
+//					
+//					for(Sprite sprite : tools){
+//						sprite.x = (int) (sprite.x*extra);
+//						sprite.y = (int) (sprite.y*extra);
+//						sprite.height = (int) (sprite.height*extra);
+//						sprite.width = (int) (sprite.width*extra);
+//					}
+//					
+//					Bridge.player.x = (int) (Bridge.player.x*extra);
+//					Bridge.player.y = (int) (Bridge.player.y*extra);
+//					Bridge.player.rh = (int) (Bridge.player.rh*extra);
+//					Bridge.player.rw = (int) (Bridge.player.rw*extra);
+//					Bridge.player.wh = (int) (Bridge.player.wh*extra);
+//					Bridge.player.ww = (int) (Bridge.player.ww*extra);
+//					
+//					
+//					return;
+//				}
+//				else {
+//					
+//					timer.setDelay(DELAY);
+//					Utils.broadcastMessage("FS true");
+//					
+//					
+//					for(Sprite sprite : sprites){
+//						sprite.x = (int) (sprite.x/extra);
+//						sprite.y = (int) (sprite.y/extra);
+//						sprite.height = (int) (sprite.height/extra);
+//						sprite.width = (int) (sprite.width/extra);
+//					}
+//					
+//					for(Moveable sprite : moveables){
+//						((Sprite) sprite).x = (int) (((Sprite) sprite).x/extra);
+//						((Sprite) sprite).y = (int) (((Sprite) sprite).y/extra);
+//						((Sprite) sprite).height = (int) (((Sprite) sprite).height/extra);
+//						((Sprite) sprite).width = (int) (((Sprite) sprite).width/extra);
+//					}
+//					
+//					for(Sprite sprite : tools){
+//						sprite.x = (int) (sprite.x/extra);
+//						sprite.y = (int) (sprite.y/extra);
+//						sprite.height = (int) (sprite.height/extra);
+//						sprite.width = (int) (sprite.width/extra);
+//					}
+//					
+//					Bridge.player.x = (int) (Bridge.player.x/extra);
+//					Bridge.player.y = (int) (Bridge.player.y/extra);
+//					Bridge.player.rh = (int) (Bridge.player.rh/extra);
+//					Bridge.player.rw = (int) (Bridge.player.rw/extra);
+//					Bridge.player.wh = (int) (Bridge.player.wh/extra);
+//					Bridge.player.ww = (int) (Bridge.player.ww/extra);
+//					fs = false;
+//					Bridge.getGame().dispose();
+//					vc.setFullScreenWindow(null);
+//					Bridge.getGame().setUndecorated(false);
+//					Bridge.getGame().setVisible(true);
+//					
+//					extra = 1;
+//					
+//				}
+//				
+//			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_1){
-				Utils.setPlayerLevel(1);
-				loadLevel();
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_2){
-				Utils.setPlayerLevel(2);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_3){
-				Utils.setPlayerLevel(3);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_4){
-				Utils.setPlayerLevel(4);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_5){
-				Utils.setPlayerLevel(5);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_6){
-				Utils.setPlayerLevel(6);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_7){
-				Utils.setPlayerLevel(7);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_8){
-				Utils.setPlayerLevel(8);
-			}
+//			if(e.getKeyCode() == KeyEvent.VK_1){
+//				Utils.setPlayerLevel(1);
+//				loadLevel();
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_2){
+//				Utils.setPlayerLevel(2);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_3){
+//				Utils.setPlayerLevel(3);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_4){
+//				Utils.setPlayerLevel(4);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_5){
+//				Utils.setPlayerLevel(5);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_6){
+//				Utils.setPlayerLevel(6);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_7){
+//				Utils.setPlayerLevel(7);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_8){
+//				Utils.setPlayerLevel(8);
+//			}
 			for (Sprite sprite : getLevel(Bridge.player.level))
 				if (sprite instanceof Keyable)
 					((Keyable) sprite).keyPressed(e);
