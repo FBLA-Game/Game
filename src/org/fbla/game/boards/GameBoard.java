@@ -1317,41 +1317,41 @@ public class GameBoard extends Board implements ActionListener {
 				
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_1){
-				Utils.setPlayerLevel(1);
-				loadLevel();
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_2){
-				Utils.setPlayerLevel(2);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_3){
-				Utils.setPlayerLevel(3);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_4){
-				Utils.setPlayerLevel(4);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_5){
-				Utils.setPlayerLevel(5);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_6){
-				Utils.setPlayerLevel(6);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_7){
-				Utils.setPlayerLevel(7);
-			}
-			
-			if(e.getKeyCode() == KeyEvent.VK_8){
-				Utils.setPlayerLevel(8);
-			}
-			for (Sprite sprite : getLevel(Bridge.player.level))
-				if (sprite instanceof Keyable)
-					((Keyable) sprite).keyPressed(e);
+//			if(e.getKeyCode() == KeyEvent.VK_1){
+//				Utils.setPlayerLevel(1);
+//				loadLevel();
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_2){
+//				Utils.setPlayerLevel(2);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_3){
+//				Utils.setPlayerLevel(3);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_4){
+//				Utils.setPlayerLevel(4);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_5){
+//				Utils.setPlayerLevel(5);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_6){
+//				Utils.setPlayerLevel(6);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_7){
+//				Utils.setPlayerLevel(7);
+//			}
+//			
+//			if(e.getKeyCode() == KeyEvent.VK_8){
+//				Utils.setPlayerLevel(8);
+//			}
+//			for (Sprite sprite : getLevel(Bridge.player.level))
+//				if (sprite instanceof Keyable)
+//					((Keyable) sprite).keyPressed(e);
 		}
 	}
 
