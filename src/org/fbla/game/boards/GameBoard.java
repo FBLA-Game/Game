@@ -405,14 +405,23 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel7(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
-			if(x==14||x==15||x==16)
-				level7.add(new Spike(x*30, 6*30));
-			else
-				level7.add(new Floor(x*30, 6*30,Floor.BLUE_STONE));
+			if(x==12||x==13||x==14||x==15||x==16||x==17){
+				if(x==14||x==15){
+					level7.add(new Gold(x*30+13,9*15+x));
+					level7.add(new Spike(x*30, 11*15+4+x));
+				} else 
+					level7.add(new Gold(x*30+13,10*15+x));
+				
+			}
+			if(x<28)
+				level7.add(new Floor(x*30, 6*30+x,Floor.GRASS));
+			level7.add(new Floor(x*30,12*30-x,Floor.GRASS,FloorBottom.DIRT));
 		}
 		
 		
-		level7.add(new Gate(31*30,5*30-1,GateType.FLAG));
+		level7.add(new Gate(0,11*30-1,GateType.FLAG));
+		
+		
 		
 		
 		if(!debug) level7.add(Bridge.getPlayer());
