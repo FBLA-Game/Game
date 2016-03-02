@@ -3,23 +3,45 @@ package org.fbla.game.sprites;
 import org.fbla.game.spriteutils.Sprite;
 import org.fbla.game.spriteutils.SpriteType;
 import org.fbla.game.spriteutils.State;
+import org.fbla.game.utils.Images;
 
 public class Wall extends Sprite {
 	
 	State state;
 	int size;
+	String color;
+	public static String BLUE_WALL = "8075FF";
+	public static String BLACK_WALL = "212121";
 
+	public Wall(int x, int y, int size, State state, String color) {
+        super(x, y);
+        this.state = state;
+        this.size = size;
+        this.color = color;
+        init();
+    }
+	
 	public Wall(int x, int y, int size, State state) {
         super(x, y);
         this.state = state;
         this.size = size;
+        this.color = "8075FF";
         init();
     }
 	
+	public Wall(int x, int y, int size, State state,boolean invisible, String color) {
+        super(x, y);
+        this.state = state;
+        this.size = size;
+        this.color = color;
+        if(invisible)initInvisible();
+        else init();
+    }
 	public Wall(int x, int y, int size, State state,boolean invisible) {
         super(x, y);
         this.state = state;
         this.size = size;
+        this.color = "8075FF";
         if(invisible)initInvisible();
         else init();
     }
@@ -32,34 +54,21 @@ public class Wall extends Sprite {
     private void init() {
     	
     	switch(state){
-    	case LEFT_LOWER_CORNER:
-    		loadImage("wall/lowerLeftCorner.png");
-    		break;
-    	case LEFT_UPPER_CORNER:
-    		loadImage("wall/upperLeftCorner.png");
-    		break;
-    	case RIGHT_LOWER_CORNER:
-    		loadImage("wall/lowerRightCorner.png");
-    		break;
-    	case RIGHT_UPPER_CORNER:
-    		loadImage("wall/upperRightCorner.png");
-    		break;
+    	
     	case VERTICAL:
-    		loadImage("wall/vertical.png");
+    		loadImage(Images.createColorImage("#" + color));
     		height = size;
     		setImageDimensions(2, size);
     		break;
-    	case LARGE_VERTICAL:
-    		loadImage("wall/vertical_large.png");
-    		break;
+    
     		
     	case HORIZONTAL:
-    		loadImage("wall/horizontal.png");
+    		loadImage(Images.createColorImage("#" + color));
     		setImageDimensions(size, 2);
     		width = size;
     		break;
     		default:
-    			loadImage("wall/vertical.png");
+    			loadImage(Images.createColorImage("#" + color));
     			break;
     	}
     }

@@ -177,6 +177,12 @@ public class Images {
 		door.loadImage(image);
 		
 	}
+
+	public static Image createColorImage(String string) {
+		BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
+		image.setRGB(0, 0, Color.decode(string).getRGB());
+		return image;
+	}
 	
 //	public static void setPolygon(Polygon p, Image image){
 //		BufferedImage i = toBufferedImage(image);
