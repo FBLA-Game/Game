@@ -14,7 +14,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.fbla.game.Bridge;
+import org.fbla.game.sprites.Floor;
 import org.fbla.game.spriteutils.Sprite;
+import org.fbla.game.spriteutils.SpriteType;
 import org.fbla.game.utils.Board;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Utils;
@@ -89,9 +91,19 @@ public class LevelDebugBoard extends Board implements ActionListener {
 		g.drawImage(Utils.getBackground(i).getImage(), 0, 0, L_WIDTH, L_HEIGHT, this);
 		
 		for(Sprite sprite : testing.getLevel(i)){
+			
+			if(sprite instanceof Floor){
+				Color color = g.getColor();
+				g.setColor(((Floor) sprite).getBackgroundType().getColor());
+				
+				g.fillRect(sprite.x, sprite.y, (int) (30), sprite.x+getHeight());
+				g.setColor(color);
+			}
 			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), this);
+			
+			
 			g.setColor(Color.BLUE);
-			g.drawRect(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+//			g.drawRect(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
 		}
 		
 		

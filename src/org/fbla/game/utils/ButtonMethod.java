@@ -1,5 +1,7 @@
 package org.fbla.game.utils;
 
+import java.util.Random;
+
 import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
 
@@ -60,8 +62,7 @@ public enum ButtonMethod {
 			((GameBoard)Bridge.getGame().getBoard()).clickables.clear();
 			String t = "You have equiped " + Bridge.player.inventory.get(b.l).getType().toString();
 			t = t.replaceAll("_", " ");
-			Utils.displayMessage(10, t, b.getGraphics().getFontMetrics().stringWidth(t)/2, 32, 100, "#FF0000", 12,Bridge.getGame().getFont());
-			
+			Utils.displayMessage(new Random().nextInt(), t, 100, 15, 30, "#FF00FF", 15, Bridge.getGame().getFont());
 		}
 		
 		if(this.equals(CREDITS)){

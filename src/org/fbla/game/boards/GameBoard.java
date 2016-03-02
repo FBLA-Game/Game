@@ -404,13 +404,18 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel7(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
-			if(x==14||x==15){
-				level7.add(new Spike(x*30, (11*15)+2));
+			if(x==12||x==13||x==14||x==15||x==16||x==17){
+				if(x==14||x==15){
+					level7.add(new Gold(x*30+13, 9*15+x));
+					level7.add(new Spike(x*30, (11*15)+2+x));
+				} else {
+					level7.add(new Gold(x*30+13, 10*15+x));
+				}
 			}
 			if(x<28)
-			level7.add(new Floor(x*30, 6*30,Floor.BLUE_STONE));
+			level7.add(new Floor(x*30, 6*30+x,Floor.GRASS,FloorBottom.GRASS));
 			
-			level7.add(new Floor(x*30,(12*30)-x*2,Floor.GRASS));
+			level7.add(new Floor(x*30,(12*30)-x,Floor.GRASS,FloorBottom.DIRT));
 		}
 		
 		
@@ -481,7 +486,13 @@ public class GameBoard extends Board implements ActionListener {
 		
 		level9.add(new Wall(15*30,10*30,8*30,State.VERTICAL));
 		level9.add(new Wall(17*30,10*30,8*30,State.VERTICAL));
+		
+		for(int y=8;y!=19;y++){
+			level9.add(new Gold(16*30, y*30));
+		}
+		level9.add(new Gate(15*30-12, 37*15, 0));
 		level9.add(new Gate(16*30-12, 37*15, 0));
+		level9.add(new Gate(17*30-12, 37*15, 0));
 		
 		if(!debug) level9.add(Bridge.getPlayer());
 		
@@ -712,7 +723,8 @@ public class GameBoard extends Board implements ActionListener {
 
 		} catch (IndexOutOfBoundsException ex) {
 			inv = false;
-			Utils.addPlayerMessage(new Random().nextInt(), "Your inventory is empty", 0, 15, 10, "#FFFFFF", 10);
+			Utils.displayMessage(new Random().nextInt(), "Your inventory is empty.", 100, 15, 30, "#FF00FF", 15, getFont());
+//			Utils.addPlayerMessage(new Random().nextInt(), "Your inventory is empty", 0, 15, 10, "#FFFFFF", 10);
 		}
 
 	}
@@ -1258,95 +1270,95 @@ public class GameBoard extends Board implements ActionListener {
 				}
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_F11){
-				
-				Utils.broadcastMessage(extra + "");
-				if(!fs){
-					
-					timer.setDelay(DELAY/2);
-					Utils.broadcastMessage("FS false");
-					
-					Bridge.getGame().dispose();
-					Bridge.getGame().setUndecorated(true);
-					vc.setFullScreenWindow(Bridge.getGame());
-					fs = true;
-					extra = ((double) Bridge.getGame().getWidth())/((double) Bridge.getGameBoardSize(0));
-					
-					for(Sprite sprite : sprites){
-						sprite.x = (int) (sprite.x*extra);
-						sprite.y = (int) (sprite.y*extra);
-						sprite.height = (int) (sprite.height*extra);
-						sprite.width = (int) (sprite.width*extra);
-					}
-					
-					for(Moveable sprite : moveables){
-						((Sprite) sprite).x = (int) (((Sprite) sprite).x*extra);
-						((Sprite) sprite).y = (int) (((Sprite) sprite).y*extra);
-						((Sprite) sprite).height = (int) (((Sprite) sprite).height*extra);
-						((Sprite) sprite).width = (int) (((Sprite) sprite).width*extra);
-					}
-					
-					for(Sprite sprite : tools){
-						sprite.x = (int) (sprite.x*extra);
-						sprite.y = (int) (sprite.y*extra);
-						sprite.height = (int) (sprite.height*extra);
-						sprite.width = (int) (sprite.width*extra);
-					}
-					
-					Bridge.player.x = (int) (Bridge.player.x*extra);
-					Bridge.player.y = (int) (Bridge.player.y*extra);
-					Bridge.player.rh = (int) (Bridge.player.rh*extra);
-					Bridge.player.rw = (int) (Bridge.player.rw*extra);
-					Bridge.player.wh = (int) (Bridge.player.wh*extra);
-					Bridge.player.ww = (int) (Bridge.player.ww*extra);
-					
-					
-					return;
-				}
-				else {
-					
-					timer.setDelay(DELAY);
-					Utils.broadcastMessage("FS true");
-					
-					
-					for(Sprite sprite : sprites){
-						sprite.x = (int) (sprite.x/extra);
-						sprite.y = (int) (sprite.y/extra);
-						sprite.height = (int) (sprite.height/extra);
-						sprite.width = (int) (sprite.width/extra);
-					}
-					
-					for(Moveable sprite : moveables){
-						((Sprite) sprite).x = (int) (((Sprite) sprite).x/extra);
-						((Sprite) sprite).y = (int) (((Sprite) sprite).y/extra);
-						((Sprite) sprite).height = (int) (((Sprite) sprite).height/extra);
-						((Sprite) sprite).width = (int) (((Sprite) sprite).width/extra);
-					}
-					
-					for(Sprite sprite : tools){
-						sprite.x = (int) (sprite.x/extra);
-						sprite.y = (int) (sprite.y/extra);
-						sprite.height = (int) (sprite.height/extra);
-						sprite.width = (int) (sprite.width/extra);
-					}
-					
-					Bridge.player.x = (int) (Bridge.player.x/extra);
-					Bridge.player.y = (int) (Bridge.player.y/extra);
-					Bridge.player.rh = (int) (Bridge.player.rh/extra);
-					Bridge.player.rw = (int) (Bridge.player.rw/extra);
-					Bridge.player.wh = (int) (Bridge.player.wh/extra);
-					Bridge.player.ww = (int) (Bridge.player.ww/extra);
-					fs = false;
-					Bridge.getGame().dispose();
-					vc.setFullScreenWindow(null);
-					Bridge.getGame().setUndecorated(false);
-					Bridge.getGame().setVisible(true);
-					
-					extra = 1;
-					
-				}
-				
-			}
+//			if(e.getKeyCode() == KeyEvent.VK_F11){
+//				
+//				Utils.broadcastMessage(extra + "");
+//				if(!fs){
+//					
+//					timer.setDelay(DELAY/2);
+//					Utils.broadcastMessage("FS false");
+//					
+//					Bridge.getGame().dispose();
+//					Bridge.getGame().setUndecorated(true);
+//					vc.setFullScreenWindow(Bridge.getGame());
+//					fs = true;
+//					extra = ((double) Bridge.getGame().getWidth())/((double) Bridge.getGameBoardSize(0));
+//					
+//					for(Sprite sprite : sprites){
+//						sprite.x = (int) (sprite.x*extra);
+//						sprite.y = (int) (sprite.y*extra);
+//						sprite.height = (int) (sprite.height*extra);
+//						sprite.width = (int) (sprite.width*extra);
+//					}
+//					
+//					for(Moveable sprite : moveables){
+//						((Sprite) sprite).x = (int) (((Sprite) sprite).x*extra);
+//						((Sprite) sprite).y = (int) (((Sprite) sprite).y*extra);
+//						((Sprite) sprite).height = (int) (((Sprite) sprite).height*extra);
+//						((Sprite) sprite).width = (int) (((Sprite) sprite).width*extra);
+//					}
+//					
+//					for(Sprite sprite : tools){
+//						sprite.x = (int) (sprite.x*extra);
+//						sprite.y = (int) (sprite.y*extra);
+//						sprite.height = (int) (sprite.height*extra);
+//						sprite.width = (int) (sprite.width*extra);
+//					}
+//					
+//					Bridge.player.x = (int) (Bridge.player.x*extra);
+//					Bridge.player.y = (int) (Bridge.player.y*extra);
+//					Bridge.player.rh = (int) (Bridge.player.rh*extra);
+//					Bridge.player.rw = (int) (Bridge.player.rw*extra);
+//					Bridge.player.wh = (int) (Bridge.player.wh*extra);
+//					Bridge.player.ww = (int) (Bridge.player.ww*extra);
+//					
+//					
+//					return;
+//				}
+//				else {
+//					
+//					timer.setDelay(DELAY);
+//					Utils.broadcastMessage("FS true");
+//					
+//					
+//					for(Sprite sprite : sprites){
+//						sprite.x = (int) (sprite.x/extra);
+//						sprite.y = (int) (sprite.y/extra);
+//						sprite.height = (int) (sprite.height/extra);
+//						sprite.width = (int) (sprite.width/extra);
+//					}
+//					
+//					for(Moveable sprite : moveables){
+//						((Sprite) sprite).x = (int) (((Sprite) sprite).x/extra);
+//						((Sprite) sprite).y = (int) (((Sprite) sprite).y/extra);
+//						((Sprite) sprite).height = (int) (((Sprite) sprite).height/extra);
+//						((Sprite) sprite).width = (int) (((Sprite) sprite).width/extra);
+//					}
+//					
+//					for(Sprite sprite : tools){
+//						sprite.x = (int) (sprite.x/extra);
+//						sprite.y = (int) (sprite.y/extra);
+//						sprite.height = (int) (sprite.height/extra);
+//						sprite.width = (int) (sprite.width/extra);
+//					}
+//					
+//					Bridge.player.x = (int) (Bridge.player.x/extra);
+//					Bridge.player.y = (int) (Bridge.player.y/extra);
+//					Bridge.player.rh = (int) (Bridge.player.rh/extra);
+//					Bridge.player.rw = (int) (Bridge.player.rw/extra);
+//					Bridge.player.wh = (int) (Bridge.player.wh/extra);
+//					Bridge.player.ww = (int) (Bridge.player.ww/extra);
+//					fs = false;
+//					Bridge.getGame().dispose();
+//					vc.setFullScreenWindow(null);
+//					Bridge.getGame().setUndecorated(false);
+//					Bridge.getGame().setVisible(true);
+//					
+//					extra = 1;
+//					
+//				}
+//				
+//			}
 			
 //			if(e.getKeyCode() == KeyEvent.VK_1){
 //				Utils.setPlayerLevel(1);
