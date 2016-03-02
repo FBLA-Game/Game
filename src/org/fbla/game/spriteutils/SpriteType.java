@@ -4,7 +4,7 @@ public enum SpriteType {
 	
 	FLOOR,
 	FALLING_FLOOR,
-	KNOBBER,
+	COMPETITOR,
 	GATE,
 	PLAYER,
 	LADDER,
@@ -29,7 +29,7 @@ public enum SpriteType {
 	public SpriteSubType getSubType(){
 		if(this == FLOOR) return SpriteSubType.PARTIAL_COLLIDEABLE;
 		if(this == FALLING_FLOOR) return SpriteSubType.PARTIAL_COLLIDEABLE;
-		if(this == KNOBBER) return SpriteSubType.ENEMY;
+		if(this == COMPETITOR) return SpriteSubType.ENEMY;
 		if(this == SPIKE) return SpriteSubType.BAD_THINGS;
 		if(this == GATE) return SpriteSubType.NON_COLLIDEABLE;
 		if(this == LADDER) return SpriteSubType.CLIMABLE;

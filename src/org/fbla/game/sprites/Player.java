@@ -1,5 +1,7 @@
 package org.fbla.game.sprites;
 
+import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -103,6 +105,22 @@ public class Player extends Entity implements Moveable,Keyable {
 		
 	}
 
+
+
+	private void openInventory(GameBoard b) {
+		Bridge.getGame().openInventory(inventory);
+	}
+
+	private void jump() {
+		if (jumping || falling)
+			return;
+		Audio.playSound(Sound.JUMP);
+		onground = false;
+		jumping = true;
+		falling = false;
+		jumpInfo.put(1, 1);
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
@@ -134,7 +152,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 				setDirection(Direction.RIGHT);
 				facing = Direction.RIGHT;
-				if(!walking && !right)x=x-(29-13);
+				if(!walking && !left && right) x=x-getWalkingWidth();
 				dx = 2;
 				walking= true;
 				
@@ -215,21 +233,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			}
 		}
 	}
-
-	private void openInventory(GameBoard b) {
-		Bridge.getGame().openInventory(inventory);
-	}
-
-	private void jump() {
-		if (jumping || falling)
-			return;
-		Audio.playSound(Sound.JUMP);
-		onground = false;
-		jumping = true;
-		falling = false;
-		jumpInfo.put(1, 1);
-	}
-
+	
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
@@ -256,6 +260,8 @@ public class Player extends Entity implements Moveable,Keyable {
 				walking= false;
 				loadImage("playermodels/" + model + "/stand.png");
 				
+				
+				
 				if(invisible)
 					toggleInvisiblility();
 				
@@ -265,7 +271,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 				dx = 0;
 				walking= false;
-				if(!right) x=x+(29-13);
+				if(right) x=x+(getRestingWidth()+4);
 				loadImage("playermodels/" + model + "/stand.png");
 				if(invisible)
 					toggleInvisiblility();
@@ -371,13 +377,16 @@ public class Player extends Entity implements Moveable,Keyable {
 			right = false;
 			climbing = false;
 			
+			Rectangle polygon = getPolygon().getBounds();
+			polygon.setBounds(x, y, width, height+1);
+			
 			
 
 			try {
 				for (Sprite sprite : ((GameBoard)Bridge.getGame().getBoard()).sprites) {
 					if(sprite instanceof Player) continue;
-					if (!getPolygon().intersects(sprite.getPolygon().getBounds()))continue;
-					if(!Utils.intersects(getPolygon(), sprite.getPolygon())) continue;
+					if (!polygon.intersects(sprite.getPolygon().getBounds()))continue;
+					if(!Utils.intersects(polygon, sprite.getPolygon())) continue;
 					if(sprite.getType().getSubType().equals(SpriteSubType.PROJECTILE)) continue;
 					
 					if (sprite instanceof Money) {
@@ -399,7 +408,8 @@ public class Player extends Entity implements Moveable,Keyable {
 					}
 					if(sprite.getSubType().equals(SpriteSubType.INTERACTABLE)){
 						interact = (Interactable)sprite;
-						Utils.addPlayerMessage(new Random().nextInt(), "Press \"SHIFT\" to interact", 30, 20, 210, "#000000", 15);
+						Utils.displayMessage(new Random().nextInt(), "Press \"SHIFT\" to interact", (Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("Press \"SHIFT\" to interact")/2), (Bridge.getGameBoardSize(1))-Bridge.getGameBoardSize(1)/7, 3, "#FFFFFF", 20);
+//						Utils.addPlayerMessage(new Random().nextInt(), "Press \"SHIFT\" to interact", 30, 20, 210, "#000000", 15);
 					} else interact = null;
 					if (sprite.getSubType().equals(SpriteSubType.PARTIAL_COLLIDEABLE) && !jumping) {
 						switch(getIntercectingDirection(sprite.getPolygon().getBounds())){
@@ -407,6 +417,8 @@ public class Player extends Entity implements Moveable,Keyable {
 							if(sprite.getType().equals(SpriteType.FALLING_FLOOR))
 								if(!((FallingFloor) sprite).t) ((FallingFloor) sprite).startFalling();
 							falling = false;
+							
+							if(!climbing)y=sprite.getY()-getHeight();
 							onground = true;
 							break;
 						default:
@@ -414,18 +426,18 @@ public class Player extends Entity implements Moveable,Keyable {
 						}
 					}
 
-					if (sprite.getType().equals(SpriteType.KNOBBER)) {
+					if (sprite.getType().equals(SpriteType.COMPETITOR)) {
 						if (getPolygon().getBounds().getMaxX() - sprite.getPolygon().getBounds().getMinX() >= -5
 								&& getPolygon().getBounds().getMaxX() - sprite.getPolygon().getBounds().getMinX() <= 0) {
-							damage(((Knobber) sprite).getPower(), this, DamageReason.ENEMY);
+							damage(((Competitor) sprite).getPower(), this, DamageReason.ENEMY);
 						}
 						if (getPolygon().getBounds().getMinX() - sprite.getPolygon().getBounds().getMaxX() >= -5
 								&& getPolygon().getBounds().getMinX() - sprite.getPolygon().getBounds().getMaxX() <= 0) {
-							damage(((Knobber) sprite).getPower(), this, DamageReason.ENEMY);
+							damage(((Competitor) sprite).getPower(), this, DamageReason.ENEMY);
 						}
 						if (getPolygon().getBounds().getMaxY() - sprite.getPolygon().getBounds().getMinY() <= 5
 								&& getPolygon().getBounds().getMaxY() - sprite.getPolygon().getBounds().getMinY() >= 0) {
-							((Knobber) sprite).damage(10,this, DamageReason.ENEMY);
+							((Competitor) sprite).damage(10,this, DamageReason.ENEMY);
 						}
 					}
 					if (sprite.getType().getSubType().equals(SpriteSubType.CLIMABLE) && !jumping) {

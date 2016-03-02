@@ -1,5 +1,7 @@
 package org.fbla.game.sprites;
 
+import java.util.Random;
+
 import org.fbla.game.Bridge;
 import org.fbla.game.sprites.tools.Key;
 import org.fbla.game.spriteutils.DoorState;
@@ -7,6 +9,7 @@ import org.fbla.game.spriteutils.Interactable;
 import org.fbla.game.spriteutils.SpriteType;
 import org.fbla.game.spriteutils.Tool;
 import org.fbla.game.utils.Images;
+import org.fbla.game.utils.Utils;
 
 import res.Texture;
 
@@ -31,6 +34,11 @@ public class Door extends Interactable {
     	loadImage(Texture.loadTexture("objects/door.png"));
     	setImageDimensions(30, 45);
     	Images.colorDoor(getImage(),this);
+    }
+    
+    @Override
+    public void interact(){
+    	Utils.displayMessage(new Random().nextInt(), "You don't have the key to open this door equipt.", (Bridge.getGameBoardSize(0)/2) - (Bridge.getGame().getGraphics().getFontMetrics().stringWidth("You don't have the key to open this door equipt.")/2), (Bridge.getGameBoardSize(1))-Bridge.getGameBoardSize(1)/7, 3, "#FFFFFF", 15);
     }
     
     @Override
