@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Utils {
 
 	private static List<Integer> ids = new ArrayList<>();
 	private static File config;
+	private static File score;
 	private static int player_level;
 	public static int player_score;
 	private static String root;
@@ -34,6 +36,7 @@ public class Utils {
 	public static void init() {
 		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/";
 		config = new File(root + "/config.txt");
+		score = new File(root + "/score.txt");
 		
 		
 		
@@ -91,13 +94,49 @@ public class Utils {
 		for (String info : data) {
 			if (info.contains("level"))
 				player_level = Integer.parseInt(info.split(":")[1]);
-			if (info.contains("score"))
-				player_score = Integer.parseInt(info.split(":")[1]);
+			
 			
 		}
 
 		
+		
+		int length1 = (int) score.length();
+		byte[] bytes1 = new byte[length1];
+		FileInputStream in1;
+		try {
+			in1 = new FileInputStream(score);
+			try {
+				in1.read(bytes1);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			} finally {
+				try {
+					in1.close();
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+			}
+		} catch (FileNotFoundException e1) {
+
+			e1.printStackTrace();
+		}
+
+		
+
+		String contents1 = new String(bytes1);
+		player_score = Integer.parseInt(contents1.split(":")[1]);
+		Bridge.getPlayer().setScore(player_score);
+		Bridge.getPlayer().level = (player_level);
+		
+		broadcastMessage("Score: " + player_score);
+		broadcastMessage("Level: " + player_level);
+			
+			
+
 	}
+
 
 	public static void broadcastMessage(String message) {
 		System.out.println(message);
@@ -131,30 +170,76 @@ public class Utils {
 	}
 
 	public static void savePlayerInfo(Player player) {
-		config.delete();
-		if (!config.getParentFile().mkdirs()) {
-		}
+		
+//		try {
+//			PrintWriter writer = new PrintWriter(config);
+//			writer.write("level:" + player.level);
+//			writer.close();
+//		} catch (FileNotFoundException e1) {
+//			e1.printStackTrace();
+//		}
+//		
+//		try {
+//			PrintWriter writer = new PrintWriter(score);
+//			writer.write("score:" + player.getScore());
+//			writer.close();
+//		} catch (FileNotFoundException e1) {
+//			e1.printStackTrace();
+//		}
+		
+		
 		try {
 			player_level = player.level;
 			player_score = player.getScore();
 		} catch (NullPointerException ex) {
 		}
-
-		BufferedWriter out = null;
+		
 		try {
-			out = new BufferedWriter(new FileWriter(config, true));
-			out.append("level:" + player_level + "-");
-			out.append("score:" + player_score);
-		} catch (IOException ex) {
+			BufferedWriter writer = new BufferedWriter(new PrintWriter(config));
+			writer.write("");
+			writer.write("level:" + player.getLevel());
+			writer.close();
+		} catch(Exception ex){
 			ex.printStackTrace();
-		} finally {
-			try {
-				out.close();
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
 		}
+		try {
+			BufferedWriter writer = new BufferedWriter(new PrintWriter(score));
+			writer.write("");
+			writer.write("score:" + player.getScore());
+			writer.close();
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+
+//		BufferedWriter out = null;
+//		try {
+//			out = new BufferedWriter(new FileWriter(config, true));
+//			out.write("level:" + player_level);
+//		} catch (IOException ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			try {
+//				out.close();
+//			} catch (IOException e) {
+//
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		BufferedWriter out1 = null;
+//		try {
+//			out1 = new BufferedWriter(new FileWriter(score, true));
+//			out1.append("score:" + player.getScore());
+//		} catch (IOException ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			try {
+//				out1.close();
+//			} catch (IOException e) {
+//
+//				e.printStackTrace();
+//			}
+//		}
 
 		
 		
@@ -169,7 +254,7 @@ public class Utils {
 
 	public static void runInstall() {
 		
-		broadcastMessage("install");
+		broadcastMessage("installing...");
 		
 		firsttime = true;
 		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/";
@@ -177,6 +262,7 @@ public class Utils {
 		if (!rootFile.exists())
 			rootFile.mkdirs();
 		config = new File(root + "/config.txt");
+		score =  new File(root + "/score.txt");
 		
 
 		try {
@@ -189,25 +275,35 @@ public class Utils {
 			
 		}
 		
-		
-
-		BufferedWriter out = null;
-
 		try {
-			out = new BufferedWriter(new FileWriter(config, true));
-			out.append("level:" + 1 + "-");
-			out.append("score:" + 0);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				out.close();
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
+			score.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if (!score.getParentFile().mkdirs()) {
+			
 		}
 
+		try {
+			BufferedWriter writer = new BufferedWriter(new PrintWriter(config));
+			writer.write("");
+			writer.write("level:1");
+			writer.close();
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		try {
+			BufferedWriter writer = new BufferedWriter(new PrintWriter(score));
+			writer.write("");
+			writer.write("score:0");
+			writer.close();
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		
 		
 
 		init();
@@ -251,5 +347,7 @@ public class Utils {
 	public static int getPlayerLevel() {
 		return player_level;
 	}
+
+	
 
 }

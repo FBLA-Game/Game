@@ -322,11 +322,13 @@ public class Player extends Entity implements Moveable,Keyable {
 		((GameBoard)Bridge.getGame().getBoard()).removedSprites.clear();
 		inventory.clear();
 		
-		if(Bridge.DEBUG){
-			inventory.add(new Bow(0,0));
-			inventory.add(new NinjaCloak(0,0));
-			inventory.add(new Key(0, 0, -1));
-		}
+		Utils.savePlayerInfo(Bridge.player);
+		
+//		if(Bridge.DEBUG){
+//			inventory.add(new Bow(0,0));
+//			inventory.add(new NinjaCloak(0,0));
+//			inventory.add(new Key(0, 0, -1));
+//		}
 		
 		
 		
