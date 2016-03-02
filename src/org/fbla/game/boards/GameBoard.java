@@ -285,15 +285,15 @@ public class GameBoard extends Board implements ActionListener {
 	
 	private void loadLevel2(boolean debug) {
 		
-		for(int x=0;x!=20;x++){
-			level2.add(new Wall(x*40, 450-(x*15), 30, State.HORIZONTAL));
+		for(int x=0;x!=32;x++){
+			level2.add(new Floor(x*30, (15*30)+x,Floor.GRASS));
+		
 		}
+		
+		level2.add(new Gate((19 * 30)+10, (29* 15)-2, GateType.FLAG));
 		if(!debug) level2.add(Bridge.getPlayer());
-		
-		level2.add(new Gate(760,(5*30)-17, GateType.FLAG));
-		
+
 		levels.put(2, level2);
-		
 	}
 	private void loadLevel3(boolean debug) {
 		
